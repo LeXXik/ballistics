@@ -1,7 +1,7 @@
 {
   "name": "ballistics",
   "version": "1.0.0",
-  "description": "Ballistics extension for Playcnavas",
+  "description": "Ballistics WASM library for calculating projectile impulses",
   "main": "index.js",
   "scripts": {
     "test": "node tests",
