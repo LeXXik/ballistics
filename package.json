@@ -1,0 +1,27 @@
+{
+  "name": "ballistics",
+  "version": "1.0.0",
+  "description": "Ballistics extension for Playcnavas",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests",
+    "build": "gulp build"
+  },
+  "keywords": [
+    "ballistics",
+    "playcanvas"
+  ],
+  "author": "LeXXik",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@assemblyscript/loader": "^0.14.8",
+    "assemblyscript": "^0.14.8",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "rollup": "^2.23.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^7.0.0"
+  }
+}
