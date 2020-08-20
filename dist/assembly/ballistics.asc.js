@@ -410,7 +410,7 @@ function asmFunc(global, env, buffer) {
   $2 = $lib_typedarray_Float64Array___uget(index_input, 1);
   $4 = $2 * $2 - 4.0 * $3 * $lib_typedarray_Float64Array___uget(index_input, 2);
   if (Math_abs($4) < 1.0e-09) {
-   $2 = -$2 / (2.0 * $3);
+   $2 = $2 * (-.5 / $3);
    $1 = index_output;
    if ($0 >>> 0 >= (HEAP32[($1 + 8 | 0) >> 2] >>> 3 | 0) >>> 0) {
     $lib_builtins_abort(1264 | 0, 1328 | 0, 1315 | 0, 64 | 0);
@@ -423,9 +423,9 @@ function asmFunc(global, env, buffer) {
     $0 = 0
    } else {
     $4 = Math_sqrt($4);
-    $3 = .5 / $3;
-    $lib_typedarray_Float64Array___uset(index_output, $0, (-$2 + $4) * $3);
-    $lib_typedarray_Float64Array___uset(index_output, $1, (-$2 - $4) * $3);
+    $3 = -.5 / $3;
+    $lib_typedarray_Float64Array___uset(index_output, $0, ($2 - $4) * $3);
+    $lib_typedarray_Float64Array___uset(index_output, $1, ($2 + $4) * $3);
     $0 = 2;
    }
   }

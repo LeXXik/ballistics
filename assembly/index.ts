@@ -32,15 +32,15 @@ export function SolveQuadric(index1: i32 = 0, index2: i32 = 1): i32 {
     const D = b * b - 4 * a * c;
 
     if (IsZero(D)) {
-        output[index1] = -b / (2 * a);
+        output[index1] = b * (-0.5 / a);
         return 1;
     } else if (D < 0) {
         return 0;
     } else  { /* if (D > 0) */
         let d = Math.sqrt(D);
-        let s = 0.5 / a;
-        unchecked(output[index1] = (-b + d) * s);
-        unchecked(output[index2] = (-b - d) * s);
+        let s = -0.5 / a;
+        unchecked(output[index1] = (b - d) * s);
+        unchecked(output[index2] = (b + d) * s);
         return 2;
     }
 }

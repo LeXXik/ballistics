@@ -1109,11 +1109,10 @@
   f64.lt
   if (result i32)
    local.get $2
-   f64.neg
-   f64.const 2
+   f64.const -0.5
    local.get $3
-   f64.mul
    f64.div
+   f64.mul
    local.set $2
    local.get $0
    local.tee $1
@@ -1150,12 +1149,11 @@
     global.get $index/output
     local.get $0
     local.get $2
-    f64.neg
     local.get $4
     f64.sqrt
     local.tee $4
-    f64.add
-    f64.const 0.5
+    f64.sub
+    f64.const -0.5
     local.get $3
     f64.div
     local.tee $3
@@ -1164,9 +1162,8 @@
     global.get $index/output
     local.get $1
     local.get $2
-    f64.neg
     local.get $4
-    f64.sub
+    f64.add
     local.get $3
     f64.mul
     call $~lib/typedarray/Float64Array#__uset
