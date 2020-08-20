@@ -297,16 +297,72 @@ function asmFunc(global, env, buffer) {
  
  function $lib_memory_memory_fill($0, $1) {
   var $2 = 0;
-  while_continue_0 : while (1) {
-   if ($1) {
-    $2 = $0;
-    $0 = $2 + 1 | 0;
-    HEAP8[$2 >> 0] = 0;
-    $1 = $1 - 1 | 0;
-    continue while_continue_0;
+  $lib_util_memory_memset_inlined_0 : {
+   if (!$1) {
+    break $lib_util_memory_memset_inlined_0
    }
-   break while_continue_0;
-  };
+   HEAP8[$0 >> 0] = 0;
+   $2 = ($0 + $1 | 0) - 4 | 0;
+   HEAP8[($2 + 3 | 0) >> 0] = 0;
+   if ($1 >>> 0 <= 2 >>> 0) {
+    break $lib_util_memory_memset_inlined_0
+   }
+   HEAP8[($0 + 1 | 0) >> 0] = 0;
+   HEAP8[($0 + 2 | 0) >> 0] = 0;
+   HEAP8[($2 + 2 | 0) >> 0] = 0;
+   HEAP8[($2 + 1 | 0) >> 0] = 0;
+   if ($1 >>> 0 <= 6 >>> 0) {
+    break $lib_util_memory_memset_inlined_0
+   }
+   HEAP8[($0 + 3 | 0) >> 0] = 0;
+   HEAP8[$2 >> 0] = 0;
+   if ($1 >>> 0 <= 8 >>> 0) {
+    break $lib_util_memory_memset_inlined_0
+   }
+   $2 = (0 - $0 | 0) & 3 | 0;
+   $0 = $2 + $0 | 0;
+   HEAP32[$0 >> 2] = 0;
+   $2 = ($1 - $2 | 0) & -4 | 0;
+   $1 = ($2 + $0 | 0) - 28 | 0;
+   HEAP32[($1 + 24 | 0) >> 2] = 0;
+   if ($2 >>> 0 <= 8 >>> 0) {
+    break $lib_util_memory_memset_inlined_0
+   }
+   HEAP32[($0 + 4 | 0) >> 2] = 0;
+   HEAP32[($0 + 8 | 0) >> 2] = 0;
+   HEAP32[($1 + 16 | 0) >> 2] = 0;
+   HEAP32[($1 + 20 | 0) >> 2] = 0;
+   if ($2 >>> 0 <= 24 >>> 0) {
+    break $lib_util_memory_memset_inlined_0
+   }
+   HEAP32[($0 + 12 | 0) >> 2] = 0;
+   HEAP32[($0 + 16 | 0) >> 2] = 0;
+   HEAP32[($0 + 20 | 0) >> 2] = 0;
+   HEAP32[($0 + 24 | 0) >> 2] = 0;
+   HEAP32[$1 >> 2] = 0;
+   HEAP32[($1 + 4 | 0) >> 2] = 0;
+   HEAP32[($1 + 8 | 0) >> 2] = 0;
+   HEAP32[($1 + 12 | 0) >> 2] = 0;
+   $1 = ($0 & 4 | 0) + 24 | 0;
+   $0 = $1 + $0 | 0;
+   $1 = $2 - $1 | 0;
+   while_continue_0 : while (1) {
+    if ($1 >>> 0 >= 32 >>> 0) {
+     HEAP32[$0 >> 2] = 0;
+     HEAP32[($0 + 4 | 0) >> 2] = 0;
+     HEAP32[($0 + 8 | 0) >> 2] = 0;
+     HEAP32[($0 + 12 | 0) >> 2] = 0;
+     HEAP32[($0 + 16 | 0) >> 2] = 0;
+     HEAP32[($0 + 20 | 0) >> 2] = 0;
+     HEAP32[($0 + 24 | 0) >> 2] = 0;
+     HEAP32[($0 + 28 | 0) >> 2] = 0;
+     $1 = $1 - 32 | 0;
+     $0 = $0 + 32 | 0;
+     continue while_continue_0;
+    }
+    break while_continue_0;
+   };
+  }
  }
  
  function $lib_typedarray_Float64Array_constructor() {
@@ -340,41 +396,36 @@ function asmFunc(global, env, buffer) {
   return $lib_rt_pure___retain(index_output) | 0;
  }
  
- function $lib_typedarray_Float64Array___get($0, $1) {
-  if ($1 >>> 0 >= (HEAP32[($0 + 8 | 0) >> 2] >>> 3 | 0) >>> 0) {
-   $lib_builtins_abort(1264 | 0, 1328 | 0, 1304 | 0, 64 | 0);
-   abort();
-  }
+ function $lib_typedarray_Float64Array___uget($0, $1) {
   return HEAPF64[(HEAP32[($0 + 4 | 0) >> 2] + ($1 << 3 | 0) | 0) >> 3];
  }
  
- function index_IsZero($0) {
-  return $0 > -1.0e-09 ? $0 < 1.0e-09 : 0;
- }
- 
- function $lib_typedarray_Float64Array___set($0, $1, $2) {
-  if ($1 >>> 0 >= (HEAP32[($0 + 8 | 0) >> 2] >>> 3 | 0) >>> 0) {
-   $lib_builtins_abort(1264 | 0, 1328 | 0, 1315 | 0, 64 | 0);
-   abort();
-  }
+ function $lib_typedarray_Float64Array___uset($0, $1, $2) {
   HEAPF64[(HEAP32[($0 + 4 | 0) >> 2] + ($1 << 3 | 0) | 0) >> 3] = $2;
  }
  
  function index_SolveQuadric($0, $1) {
   var $2 = 0.0, $3 = 0.0, $4 = 0.0;
-  $2 = $lib_typedarray_Float64Array___get(index_input, 0);
-  $3 = $lib_typedarray_Float64Array___get(index_input, 1);
-  $4 = $3 * $3 - 4.0 * $2 * $lib_typedarray_Float64Array___get(index_input, 2);
-  if (index_IsZero($4)) {
-   $lib_typedarray_Float64Array___set(index_output, $0 & 255 | 0, -$3 / (2.0 * $2));
+  $3 = $lib_typedarray_Float64Array___uget(index_input, 0);
+  $2 = $lib_typedarray_Float64Array___uget(index_input, 1);
+  $4 = $2 * $2 - 4.0 * $3 * $lib_typedarray_Float64Array___uget(index_input, 2);
+  if (Math_abs($4) < 1.0e-09) {
+   $2 = -$2 / (2.0 * $3);
+   $1 = index_output;
+   if ($0 >>> 0 >= (HEAP32[($1 + 8 | 0) >> 2] >>> 3 | 0) >>> 0) {
+    $lib_builtins_abort(1264 | 0, 1328 | 0, 1315 | 0, 64 | 0);
+    abort();
+   }
+   HEAPF64[(HEAP32[($1 + 4 | 0) >> 2] + ($0 << 3 | 0) | 0) >> 3] = $2;
    $0 = 1;
   } else {
    if ($4 < 0.0) {
     $0 = 0
    } else {
-    $2 = 2.0 * $2;
-    $lib_typedarray_Float64Array___set(index_output, $0 & 255 | 0, (-$3 + Math_sqrt($4)) / $2);
-    $lib_typedarray_Float64Array___set(index_output, $1 & 255 | 0, (-$3 - Math_sqrt($4)) / $2);
+    $4 = Math_sqrt($4);
+    $3 = .5 / $3;
+    $lib_typedarray_Float64Array___uset(index_output, $0, (-$2 + $4) * $3);
+    $lib_typedarray_Float64Array___uset(index_output, $1, (-$2 - $4) * $3);
     $0 = 2;
    }
   }
@@ -830,23 +881,26 @@ function asmFunc(global, env, buffer) {
  }
  
  function index_SolveCubic() {
-  var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0, $4 = 0.0, $5 = 0.0;
-  $4 = $lib_typedarray_Float64Array___get(index_input, 1) / $lib_typedarray_Float64Array___get(index_input, 0);
-  $0 = $4 * $4;
-  $1 = $lib_typedarray_Float64Array___get(index_input, 2) / $lib_typedarray_Float64Array___get(index_input, 0);
-  $2 = -.3333333333333333 * $0 + $1;
-  $0 = .5 * (.07407407407407407 * $4 * $0 - .3333333333333333 * $4 * $1 + $lib_typedarray_Float64Array___get(index_input, 3) / $lib_typedarray_Float64Array___get(index_input, 0));
-  $1 = .3333333333333333 * $2;
+  var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0, $4 = 0.0, $5 = 0.0, $6 = 0.0;
+  $0 = $lib_typedarray_Float64Array___uget(index_input, 0);
+  $0 = 1.0 / $0;
+  $4 = $lib_typedarray_Float64Array___uget(index_input, 1) * $0;
+  $1 = $4 * $4;
+  $2 = $lib_typedarray_Float64Array___uget(index_input, 2) * $0;
+  $5 = -.3333333333333333 * $1 + $2;
+  $0 = .5 * (.07407407407407407 * $4 * $1 - .3333333333333333 * $4 * $2 + $lib_typedarray_Float64Array___uget(index_input, 3) * $0);
+  $1 = .3333333333333333 * $5;
   $5 = $1 * $1 * $1;
   $2 = $0 * $0 + $5;
-  if (index_IsZero($2)) {
-   if (index_IsZero($0)) {
-    $lib_typedarray_Float64Array___set(index_output, 0, 0.0);
+  $6 = $2;
+  if (Math_abs($2) < 1.0e-09) {
+   if (Math_abs($0) < 1.0e-09) {
+    $lib_typedarray_Float64Array___uset(index_output, 0, 0.0);
     $3 = 1;
    } else {
     $0 = $lib_math_NativeMath_cbrt(-$0);
-    $lib_typedarray_Float64Array___set(index_output, 0, 2.0 * $0);
-    $lib_typedarray_Float64Array___set(index_output, 1, -$0);
+    $lib_typedarray_Float64Array___uset(index_output, 0, 2.0 * $0);
+    $lib_typedarray_Float64Array___uset(index_output, 1, -$0);
     $3 = 2;
    }
   } else {
@@ -854,56 +908,58 @@ function asmFunc(global, env, buffer) {
     $2 = $lib_math_NativeMath_acos(-$0 / Math_sqrt(-$5));
     $0 = 2.0 * Math_sqrt(-$1);
     $1 = .3333333333333333 * $2;
-    $lib_typedarray_Float64Array___set(index_output, 0, $0 * $lib_math_NativeMath_cos($1));
-    $lib_typedarray_Float64Array___set(index_output, 1, -$0 * $lib_math_NativeMath_cos($1 + 1.0471975511965976));
-    $lib_typedarray_Float64Array___set(index_output, 2, -$0 * $lib_math_NativeMath_cos($1 - 1.0471975511965976));
+    $lib_typedarray_Float64Array___uset(index_output, 0, $0 * $lib_math_NativeMath_cos($1));
+    $lib_typedarray_Float64Array___uset(index_output, 1, -$0 * $lib_math_NativeMath_cos($1 + 1.0471975511965976));
+    $lib_typedarray_Float64Array___uset(index_output, 2, -$0 * $lib_math_NativeMath_cos($1 - 1.0471975511965976));
     $3 = 3;
    } else {
-    $1 = Math_sqrt($2);
+    $1 = Math_sqrt($6);
     $2 = $lib_math_NativeMath_cbrt($1 - $0);
     $0 = -$lib_math_NativeMath_cbrt($1 + $0);
-    $lib_typedarray_Float64Array___set(index_output, 0, $2 + $0);
+    $lib_typedarray_Float64Array___uset(index_output, 0, $2 + $0);
     $3 = 1;
    }
   }
   $0 = .3333333333333333 * $4;
-  if ($3 >>> 0 > 0 >>> 0) {
-   $lib_typedarray_Float64Array___set(index_output, 0, $lib_typedarray_Float64Array___get(index_output, 0) - $0)
+  if (($3 | 0) > (0 | 0)) {
+   $lib_typedarray_Float64Array___uset(index_output, 0, $lib_typedarray_Float64Array___uget(index_output, 0) - $0)
   }
-  if ($3 >>> 0 > 1 >>> 0) {
-   $lib_typedarray_Float64Array___set(index_output, 1, $lib_typedarray_Float64Array___get(index_output, 1) - $0)
+  if (($3 | 0) > (1 | 0)) {
+   $lib_typedarray_Float64Array___uset(index_output, 1, $lib_typedarray_Float64Array___uget(index_output, 1) - $0)
   }
-  if ($3 >>> 0 > 2 >>> 0) {
-   $lib_typedarray_Float64Array___set(index_output, 2, $lib_typedarray_Float64Array___get(index_output, 2) - $0)
+  if (($3 | 0) > (2 | 0)) {
+   $lib_typedarray_Float64Array___uset(index_output, 2, $lib_typedarray_Float64Array___uget(index_output, 2) - $0)
   }
   return $3 | 0;
  }
  
  function index_SolveQuartic() {
-  var $0 = 0.0, $1 = 0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $6 = 0.0, $7 = 0;
-  $4 = $lib_typedarray_Float64Array___get(index_input, 1) / $lib_typedarray_Float64Array___get(index_input, 0);
+  var $0 = 0.0, $1 = 0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $6 = 0.0, $7 = 0.0, $8 = 0;
+  $0 = $lib_typedarray_Float64Array___uget(index_input, 0);
+  $3 = 1.0 / $0;
+  $4 = $lib_typedarray_Float64Array___uget(index_input, 1) * $3;
   $2 = $4 * $4;
-  $5 = $lib_typedarray_Float64Array___get(index_input, 2) / $lib_typedarray_Float64Array___get(index_input, 0);
-  $3 = -.375 * $2 + $5;
-  $0 = $lib_typedarray_Float64Array___get(index_input, 3) / $lib_typedarray_Float64Array___get(index_input, 0);
-  $6 = .125 * $2 * $4 - .5 * $4 * $5 + $0;
-  $0 = -.01171875 * $2 * $2 + .0625 * $2 * $5 - .25 * $4 * $0 + $lib_typedarray_Float64Array___get(index_input, 4) / $lib_typedarray_Float64Array___get(index_input, 0);
-  if (index_IsZero($0)) {
-   $lib_typedarray_Float64Array___set(index_output, 3, $6);
-   $lib_typedarray_Float64Array___set(index_output, 2, $3);
-   $lib_typedarray_Float64Array___set(index_output, 1, 0.0);
-   $lib_typedarray_Float64Array___set(index_output, 0, 1.0);
+  $5 = $lib_typedarray_Float64Array___uget(index_input, 2) * $3;
+  $6 = -.375 * $2 + $5;
+  $0 = $lib_typedarray_Float64Array___uget(index_input, 3) * $3;
+  $7 = .125 * $2 * $4 - .5 * $4 * $5 + $0;
+  $0 = -.01171875 * $2 * $2 + .0625 * $2 * $5 - .25 * $4 * $0 + $lib_typedarray_Float64Array___uget(index_input, 4) * $3;
+  if (Math_abs($0) < 1.0e-09) {
+   $lib_typedarray_Float64Array___uset(index_output, 3, $7);
+   $lib_typedarray_Float64Array___uset(index_output, 2, $6);
+   $lib_typedarray_Float64Array___uset(index_output, 1, 0.0);
+   $lib_typedarray_Float64Array___uset(index_output, 0, 1.0);
    $1 = index_SolveCubic();
   } else {
-   $lib_typedarray_Float64Array___set(index_input, 3, .5 * $0 * $3 - .125 * $6 * $6);
-   $lib_typedarray_Float64Array___set(index_input, 2, -$0);
-   $lib_typedarray_Float64Array___set(index_input, 1, -.5 * $3);
-   $lib_typedarray_Float64Array___set(index_input, 0, 1.0);
+   $lib_typedarray_Float64Array___uset(index_input, 3, .5 * $0 * $6 - .125 * $7 * $7);
+   $lib_typedarray_Float64Array___uset(index_input, 2, -$0);
+   $lib_typedarray_Float64Array___uset(index_input, 1, -.5 * $6);
+   $lib_typedarray_Float64Array___uset(index_input, 0, 1.0);
    index_SolveCubic();
-   $2 = $lib_typedarray_Float64Array___get(index_output, 0);
-   $3 = 2.0 * $2 - $3;
+   $2 = $lib_typedarray_Float64Array___uget(index_output, 0);
+   $3 = 2.0 * $2 - $6;
    $0 = $2 * $2 - $0;
-   if (index_IsZero($0)) {
+   if (Math_abs($0) < 1.0e-09) {
     $0 = 0.0
    } else {
     if ($0 > 0.0) {
@@ -913,7 +969,7 @@ function asmFunc(global, env, buffer) {
     }
    }
    $5 = $0;
-   if (index_IsZero($3)) {
+   if (Math_abs($3) < 1.0e-09) {
     $0 = 0.0
    } else {
     if ($3 > 0.0) {
@@ -922,38 +978,38 @@ function asmFunc(global, env, buffer) {
      return 0 | 0
     }
    }
-   $lib_typedarray_Float64Array___set(index_input, 2, $2 - $5);
-   $7 = $6 < 0.0;
-   $lib_typedarray_Float64Array___set(index_input, 1, $7 ? -$0 : $0);
-   $lib_typedarray_Float64Array___set(index_input, 0, 1.0);
+   $lib_typedarray_Float64Array___uset(index_input, 2, $2 - $5);
+   $8 = $7 < 0.0;
+   $lib_typedarray_Float64Array___uset(index_input, 1, $8 ? -$0 : $0);
+   $lib_typedarray_Float64Array___uset(index_input, 0, 1.0);
    $1 = index_SolveQuadric(0, 1);
-   $lib_typedarray_Float64Array___set(index_input, 2, $2 + $5);
-   $lib_typedarray_Float64Array___set(index_input, 1, $7 ? $0 : -$0);
-   $lib_typedarray_Float64Array___set(index_input, 0, 1.0);
+   $lib_typedarray_Float64Array___uset(index_input, 2, $2 + $5);
+   $lib_typedarray_Float64Array___uset(index_input, 1, $8 ? $0 : -$0);
+   $lib_typedarray_Float64Array___uset(index_input, 0, 1.0);
    if (!$1) {
     $1 = index_SolveQuadric(0, 1) + $1 | 0
    }
-   if (($1 & 255 | 0 | 0) == (1 | 0)) {
+   if (($1 | 0) == (1 | 0)) {
     $1 = index_SolveQuadric(1, 2) + $1 | 0
    }
-   if (($1 & 255 | 0 | 0) == (2 | 0)) {
+   if (($1 | 0) == (2 | 0)) {
     $1 = index_SolveQuadric(2, 3) + $1 | 0
    }
   }
   $0 = .25 * $4;
-  if (($1 & 255 | 0) >>> 0 > 0 >>> 0) {
-   $lib_typedarray_Float64Array___set(index_output, 0, $lib_typedarray_Float64Array___get(index_output, 0) - $0)
+  if (($1 | 0) > (0 | 0)) {
+   $lib_typedarray_Float64Array___uset(index_output, 0, $lib_typedarray_Float64Array___uget(index_output, 0) - $0)
   }
-  if (($1 & 255 | 0) >>> 0 > 1 >>> 0) {
-   $lib_typedarray_Float64Array___set(index_output, 1, $lib_typedarray_Float64Array___get(index_output, 1) - $0)
+  if (($1 | 0) > (1 | 0)) {
+   $lib_typedarray_Float64Array___uset(index_output, 1, $lib_typedarray_Float64Array___uget(index_output, 1) - $0)
   }
-  if (($1 & 255 | 0) >>> 0 > 2 >>> 0) {
-   $lib_typedarray_Float64Array___set(index_output, 2, $lib_typedarray_Float64Array___get(index_output, 2) - $0)
+  if (($1 | 0) > (2 | 0)) {
+   $lib_typedarray_Float64Array___uset(index_output, 2, $lib_typedarray_Float64Array___uget(index_output, 2) - $0)
   }
-  if (($1 & 255 | 0) >>> 0 > 3 >>> 0) {
-   $lib_typedarray_Float64Array___set(index_output, 3, $lib_typedarray_Float64Array___get(index_output, 3) - $0)
+  if (($1 | 0) > (3 | 0)) {
+   $lib_typedarray_Float64Array___uset(index_output, 3, $lib_typedarray_Float64Array___uget(index_output, 3) - $0)
   }
-  return $1 & 255 | 0 | 0;
+  return $1 | 0;
  }
  
  function $lib_typedarray_Float64Array_fill($0) {
@@ -1050,20 +1106,22 @@ function asmFunc(global, env, buffer) {
  }
  
  function index_range() {
-  var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0.0;
+  var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0, $5 = 0.0;
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_output));
-  $0 = $lib_typedarray_Float64Array___get(index_input, 5);
-  $3 = $lib_typedarray_Float64Array___get(index_input, 6);
-  $1 = $lib_typedarray_Float64Array___get(index_input, 7);
-  $4 = $0 * $lib_math_NativeMath_cos(.7853981633974483);
+  $0 = $lib_typedarray_Float64Array___uget(index_input, 5);
+  $3 = $lib_typedarray_Float64Array___uget(index_input, 6);
+  $1 = $lib_typedarray_Float64Array___uget(index_input, 7);
+  $5 = $0 * $lib_math_NativeMath_cos(.7853981633974483);
   $2 = $lib_math_NativeMath_sin(.7853981633974483);
   $1 = $0 * $0 * $2 * $2 + 2.0 * $3 * $1;
-  $lib_typedarray_Float64Array___set(index_output, 6, $4 / $3 * ($0 * $2 + Math_sqrt($1)));
+  $lib_typedarray_Float64Array___uset(index_output, 6, $5 / $3 * ($0 * $2 + Math_sqrt($1)));
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_input));
-  if ($lib_typedarray_Float64Array___get(index_output, 6) > 0.0) {
-   return 1 | 0
+  if ($lib_typedarray_Float64Array___uget(index_output, 6) > 0.0) {
+   $4 = 1
+  } else {
+   $4 = 0
   }
-  return 0 | 0;
+  return $4 | 0;
  }
  
  function $lib_math_NativeMath_atan($0) {
@@ -1246,42 +1304,51 @@ function asmFunc(global, env, buffer) {
  function index_solveArcStatic() {
   var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $6 = 0.0, $7 = 0.0, $8 = 0;
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_output));
-  $3 = $lib_typedarray_Float64Array___get(index_input, 5);
-  $5 = $lib_typedarray_Float64Array___get(index_input, 6);
-  $0 = $lib_typedarray_Float64Array___get(index_input, 7);
-  $2 = $lib_typedarray_Float64Array___get(index_input, 8);
-  $6 = $lib_typedarray_Float64Array___get(index_input, 9);
-  $4 = $lib_typedarray_Float64Array___get(index_input, 10);
-  $1 = $lib_typedarray_Float64Array___get(index_input, 11);
-  $7 = $lib_typedarray_Float64Array___get(index_input, 12);
-  $6 = $6 - $3;
-  $3 = $4 - $5;
-  $5 = $1 - $0;
-  $0 = Math_sqrt($6 * $6 + $3 * $3 + $5 * $5);
-  $4 = $7 * $0;
-  $1 = $2 * $2;
-  $0 = $1 * $2 * $2 - $7 * ($4 * $0 + 2.0 * $3 * $1);
-  if ($0 < 0.0) {
+  $4 = $lib_typedarray_Float64Array___uget(index_input, 5);
+  $5 = $lib_typedarray_Float64Array___uget(index_input, 6);
+  $1 = $lib_typedarray_Float64Array___uget(index_input, 7);
+  $6 = $lib_typedarray_Float64Array___uget(index_input, 8);
+  $3 = $lib_typedarray_Float64Array___uget(index_input, 9);
+  $0 = $lib_typedarray_Float64Array___uget(index_input, 10);
+  $2 = $lib_typedarray_Float64Array___uget(index_input, 11);
+  $7 = $lib_typedarray_Float64Array___uget(index_input, 12);
+  $3 = $3 - $4;
+  $4 = $0 - $5;
+  $5 = $2 - $1;
+  $1 = Math_sqrt($3 * $3 + $4 * $4 + $5 * $5);
+  $0 = $7 * $1;
+  $2 = $0 * $1;
+  $1 = $6 * $6;
+  $2 = $2 + 2.0 * $4 * $1;
+  $2 = $1 * $1 - $7 * $2;
+  if ($2 < 0.0) {
    return 0 | 0
   }
-  $7 = Math_sqrt($0);
-  $0 = $lib_math_NativeMath_atan2($1 - $7, $4);
-  $4 = $lib_math_NativeMath_atan2($1 + $7, $4);
-  $8 = $0 != $4 ? 2 : 1;
-  $1 = $6 * $6 + $3 * $3 + $5 * $5;
-  if ($1 > 0.0) {
-   $1 = 1.0 / Math_sqrt($1);
-   $6 = $6 * $1;
-   $5 = $5 * $1;
-   $3 = $3 * $1;
+  $7 = Math_sqrt($2);
+  $2 = $lib_math_NativeMath_atan2($1 - $7, $0);
+  $1 = $lib_math_NativeMath_atan2($1 + $7, $0);
+  $8 = $2 != $1 ? 2 : 1;
+  $0 = $3 * $3 + $4 * $4 + $5 * $5;
+  if ($0 > 0.0) {
+   $0 = 1.0 / Math_sqrt($0);
+   $3 = $3 * $0;
+   $5 = $5 * $0;
+   $4 = $4 * $0;
   }
-  $lib_typedarray_Float64Array___set(index_output, 6, $6 * $lib_math_NativeMath_cos($0) * $2);
-  $lib_typedarray_Float64Array___set(index_output, 7, $3 * $lib_math_NativeMath_cos($0) * $2 + $lib_math_NativeMath_sin($0) * $2);
-  $lib_typedarray_Float64Array___set(index_output, 8, $5 * $lib_math_NativeMath_cos($0) * $2);
-  if ($8 >>> 0 > 1 >>> 0) {
-   $lib_typedarray_Float64Array___set(index_output, 9, $6 * $lib_math_NativeMath_cos($4) * $2);
-   $lib_typedarray_Float64Array___set(index_output, 10, $3 * $lib_math_NativeMath_cos($4) * $2 + $lib_math_NativeMath_sin($4) * $2);
-   $lib_typedarray_Float64Array___set(index_output, 11, $5 * $lib_math_NativeMath_cos($4) * $2);
+  $0 = $lib_math_NativeMath_cos($2);
+  $2 = $lib_math_NativeMath_sin($2);
+  $0 = $0 * $6;
+  $lib_typedarray_Float64Array___uset(index_output, 6, $3 * $0);
+  $lib_typedarray_Float64Array___uset(index_output, 7, $4 * $0 + $2 * $6);
+  $lib_typedarray_Float64Array___uset(index_output, 8, $5 * $0);
+  if (($8 | 0) > (1 | 0)) {
+   $0 = $lib_math_NativeMath_cos($1);
+   $1 = $lib_math_NativeMath_sin($1);
+   $2 = $3;
+   $3 = $0 * $6;
+   $lib_typedarray_Float64Array___uset(index_output, 9, $2 * $3);
+   $lib_typedarray_Float64Array___uset(index_output, 10, $4 * $3 + $1 * $6);
+   $lib_typedarray_Float64Array___uset(index_output, 11, $5 * $3);
   }
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_input));
   return $8 | 0;
@@ -1417,94 +1484,157 @@ function asmFunc(global, env, buffer) {
   return (($3 | 0) > ($4 | 0) ? 1 : ($3 | 0) >= ($4 | 0) ? $5 >>> 0 > $2 >>> 0 : 0) - (($3 | 0) < ($4 | 0) ? 1 : ($3 | 0) <= ($4 | 0) ? $5 >>> 0 < $2 >>> 0 : 0) | 0 | 0;
  }
  
+ function $lib_memory_memory_copy($0, $1, $2) {
+  var $3 = 0, $4 = 0, $5 = 0;
+  $lib_util_memory_memmove_inlined_0 : {
+   $3 = $2;
+   if (($0 | 0) == ($1 | 0)) {
+    break $lib_util_memory_memmove_inlined_0
+   }
+   if ($0 >>> 0 < $1 >>> 0) {
+    if (($1 & 7 | 0 | 0) == ($0 & 7 | 0 | 0)) {
+     while_continue_0 : while (1) {
+      if ($0 & 7 | 0) {
+       if (!$3) {
+        break $lib_util_memory_memmove_inlined_0
+       }
+       $3 = $3 - 1 | 0;
+       $2 = $0;
+       $0 = $0 + 1 | 0;
+       $4 = $1;
+       $1 = $1 + 1 | 0;
+       HEAP8[$2 >> 0] = HEAPU8[$4 >> 0];
+       continue while_continue_0;
+      }
+      break while_continue_0;
+     };
+     while_continue_1 : while (1) {
+      if ($3 >>> 0 >= 8 >>> 0) {
+       $2 = HEAP32[($1 + 4 | 0) >> 2];
+       HEAP32[$0 >> 2] = HEAP32[$1 >> 2];
+       HEAP32[($0 + 4 | 0) >> 2] = $2;
+       $3 = $3 - 8 | 0;
+       $0 = $0 + 8 | 0;
+       $1 = $1 + 8 | 0;
+       continue while_continue_1;
+      }
+      break while_continue_1;
+     };
+    }
+    while_continue_2 : while (1) {
+     if ($3) {
+      $2 = $0;
+      $0 = $0 + 1 | 0;
+      $4 = $1;
+      $1 = $1 + 1 | 0;
+      HEAP8[$2 >> 0] = HEAPU8[$4 >> 0];
+      $3 = $3 - 1 | 0;
+      continue while_continue_2;
+     }
+     break while_continue_2;
+    };
+   } else {
+    if (($1 & 7 | 0 | 0) == ($0 & 7 | 0 | 0)) {
+     while_continue_3 : while (1) {
+      if (($0 + $3 | 0) & 7 | 0) {
+       if (!$3) {
+        break $lib_util_memory_memmove_inlined_0
+       }
+       $3 = $3 - 1 | 0;
+       $2 = $3 + $1 | 0;
+       HEAP8[($0 + $3 | 0) >> 0] = HEAPU8[$2 >> 0];
+       continue while_continue_3;
+      }
+      break while_continue_3;
+     };
+     while_continue_4 : while (1) {
+      if ($3 >>> 0 >= 8 >>> 0) {
+       $3 = $3 - 8 | 0;
+       $2 = $3 + $1 | 0;
+       $4 = HEAP32[($2 + 4 | 0) >> 2];
+       $5 = $0 + $3 | 0;
+       HEAP32[$5 >> 2] = HEAP32[$2 >> 2];
+       HEAP32[($5 + 4 | 0) >> 2] = $4;
+       continue while_continue_4;
+      }
+      break while_continue_4;
+     };
+    }
+    while_continue_5 : while (1) {
+     if ($3) {
+      $3 = $3 - 1 | 0;
+      $2 = $3 + $1 | 0;
+      HEAP8[($0 + $3 | 0) >> 0] = HEAPU8[$2 >> 0];
+      continue while_continue_5;
+     }
+     break while_continue_5;
+    };
+   }
+  }
+ }
+ 
  function $lib_typedarray_Float64Array_copyWithin($0, $1, $2, $3) {
   var $4 = 0, $5 = 0, $6 = 0, $7 = 0;
-  $7 = $lib_rt_pure___retain($0);
-  $5 = HEAP32[($7 + 8 | 0) >> 2] >>> 3 | 0;
-  $0 = ($3 | 0) < ($5 | 0);
-  $6 = $0 ? $3 : $5;
-  $4 = HEAP32[($7 + 4 | 0) >> 2];
-  $3 = $4;
+  $6 = $lib_rt_pure___retain($0);
+  $4 = HEAP32[($6 + 8 | 0) >> 2] >>> 3 | 0;
+  $0 = ($3 | 0) < ($4 | 0);
+  $5 = $0 ? $3 : $4;
+  $3 = HEAP32[($6 + 4 | 0) >> 2];
+  $7 = $3;
   if (($1 | 0) < (0 | 0)) {
-   $0 = $1 + $5 | 0;
+   $0 = $1 + $4 | 0;
    $1 = ($0 | 0) > (0 | 0);
    $1 = $1 ? $0 : 0;
   } else {
-   $1 = ($1 | 0) < ($5 | 0) ? $1 : $5
+   $1 = ($1 | 0) < ($4 | 0) ? $1 : $4
   }
-  $3 = $3 + ($1 << 3 | 0) | 0;
+  $7 = $7 + ($1 << 3 | 0) | 0;
   if (($2 | 0) < (0 | 0)) {
-   $0 = $2 + $5 | 0;
+   $0 = $2 + $4 | 0;
    $2 = ($0 | 0) > (0 | 0);
    $0 = $2 ? $0 : 0;
   } else {
-   $0 = ($2 | 0) < ($5 | 0) ? $2 : $5
+   $0 = ($2 | 0) < ($4 | 0) ? $2 : $4
   }
-  $2 = ($0 << 3 | 0) + $4 | 0;
-  if (($6 | 0) < (0 | 0)) {
-   $4 = $5 + $6 | 0;
-   $6 = ($4 | 0) > (0 | 0);
-   $4 = $6 ? $4 : 0;
+  $3 = ($0 << 3 | 0) + $3 | 0;
+  if (($5 | 0) < (0 | 0)) {
+   $2 = $4 + $5 | 0;
+   $5 = ($2 | 0) > (0 | 0);
+   $2 = $5 ? $2 : 0;
   } else {
-   $4 = ($6 | 0) < ($5 | 0) ? $6 : $5
+   $2 = ($5 | 0) < ($4 | 0) ? $5 : $4
   }
-  $0 = $4 - $0 | 0;
-  $1 = $5 - $1 | 0;
-  $4 = ($0 | 0) < ($1 | 0);
-  $4 = ($4 ? $0 : $1) << 3 | 0;
-  if (($2 | 0) != ($3 | 0)) {
-   if ($3 >>> 0 < $2 >>> 0) {
-    while_continue_0 : while (1) {
-     if ($4) {
-      $0 = $3;
-      $3 = $0 + 1 | 0;
-      $1 = $2;
-      $2 = $1 + 1 | 0;
-      HEAP8[$0 >> 0] = HEAPU8[$1 >> 0];
-      $4 = $4 - 1 | 0;
-      continue while_continue_0;
-     }
-     break while_continue_0;
-    }
-   } else {
-    while_continue_1 : while (1) {
-     if ($4) {
-      $4 = $4 - 1 | 0;
-      $0 = $4 + $2 | 0;
-      HEAP8[($3 + $4 | 0) >> 0] = HEAPU8[$0 >> 0];
-      continue while_continue_1;
-     }
-     break while_continue_1;
-    }
-   }
-  }
-  return $7;
+  $0 = $2 - $0 | 0;
+  $1 = $4 - $1 | 0;
+  $2 = ($0 | 0) < ($1 | 0);
+  $lib_memory_memory_copy($7, $3, ($2 ? $0 : $1) << 3 | 0);
+  return $6;
  }
  
  function index_solveArcMoving() {
   var $0 = 0, $1 = 0.0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0.0, $7 = 0.0, $8 = 0.0, $9 = 0.0, $10 = 0.0, $11 = 0, $12 = 0.0, $13 = 0.0, $14 = 0.0, $15 = 0.0, $16 = 0, $17 = 0.0, wasm2js_i32$0 = 0, wasm2js_i32$1 = 0;
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_output));
   $0 = 6;
-  $6 = $lib_typedarray_Float64Array___get(index_input, 5);
-  $7 = $lib_typedarray_Float64Array___get(index_input, 6);
-  $8 = $lib_typedarray_Float64Array___get(index_input, 7);
-  $1 = $lib_typedarray_Float64Array___get(index_input, 8);
-  $12 = $lib_typedarray_Float64Array___get(index_input, 9);
-  $13 = $lib_typedarray_Float64Array___get(index_input, 10);
-  $17 = $lib_typedarray_Float64Array___get(index_input, 11);
-  $14 = $lib_typedarray_Float64Array___get(index_input, 12);
-  $9 = $lib_typedarray_Float64Array___get(index_input, 13);
-  $15 = $lib_typedarray_Float64Array___get(index_input, 14);
-  $10 = -.5 * $lib_typedarray_Float64Array___get(index_input, 15);
-  $lib_typedarray_Float64Array___set(index_input, 0, $10 * $10);
-  $lib_typedarray_Float64Array___set(index_input, 1, 2.0 * $9 * $10);
+  $6 = $lib_typedarray_Float64Array___uget(index_input, 5);
+  $7 = $lib_typedarray_Float64Array___uget(index_input, 6);
+  $8 = $lib_typedarray_Float64Array___uget(index_input, 7);
+  $1 = $lib_typedarray_Float64Array___uget(index_input, 8);
+  $12 = $lib_typedarray_Float64Array___uget(index_input, 9);
+  $13 = $lib_typedarray_Float64Array___uget(index_input, 10);
+  $17 = $lib_typedarray_Float64Array___uget(index_input, 11);
+  $14 = $lib_typedarray_Float64Array___uget(index_input, 12);
+  $9 = $lib_typedarray_Float64Array___uget(index_input, 13);
+  $15 = $lib_typedarray_Float64Array___uget(index_input, 14);
+  $10 = -.5 * $lib_typedarray_Float64Array___uget(index_input, 15);
+  $lib_typedarray_Float64Array___uset(index_input, 0, $10 * $10);
+  $lib_typedarray_Float64Array___uset(index_input, 1, 2.0 * $9 * $10);
   $7 = $13 - $7;
   $13 = 2.0 * $7;
-  $lib_typedarray_Float64Array___set(index_input, 2, $9 * $9 + $13 * $10 - $1 * $1 + $14 * $14 + $15 * $15);
+  $lib_typedarray_Float64Array___uset(index_input, 2, $9 * $9 + $13 * $10 - $1 * $1 + $14 * $14 + $15 * $15);
   $6 = $12 - $6;
   $8 = $17 - $8;
-  $lib_typedarray_Float64Array___set(index_input, 3, $13 * $9 + 2.0 * $6 * $14 + 2.0 * $8 * $15);
-  $lib_typedarray_Float64Array___set(index_input, 4, $7 * $7 + $6 * $6 + $8 * $8);
+  $lib_typedarray_Float64Array___uset(index_input, 3, $13 * $9 + 2.0 * $6 * $14 + 2.0 * $8 * $15);
+  $lib_typedarray_Float64Array___uset(index_input, 4, $7 * $7 + $6 * $6 + $8 * $8);
   index_SolveQuartic();
   $3 = $lib_rt_pure___retain(index_output);
   $2 = HEAP32[($3 + 8 | 0) >> 2];
@@ -1543,45 +1673,45 @@ function asmFunc(global, env, buffer) {
    }
   }
   $lib_rt_pure___release($5);
-  for_loop_1 : while (1) {
-   if (($16 & 255 | 0) >>> 0 < 6 >>> 0 ? ($11 & 255 | 0) >>> 0 < 2 >>> 0 : 0) {
-    $1 = $lib_typedarray_Float64Array___get(index_output, $16 & 255 | 0);
+  for_loop_0 : while (1) {
+   if (($16 | 0) < (6 | 0) ? ($11 | 0) < (2 | 0) : 0) {
+    $1 = $lib_typedarray_Float64Array___uget(index_output, $16);
     if (!($1 <= 0.0)) {
-     $lib_typedarray_Float64Array___set(index_output, $0 & 255 | 0, ($6 + $14 * $1) / $1);
+     $lib_typedarray_Float64Array___uset(index_output, $0, ($6 + $14 * $1) / $1);
      $0 = $0 + 1 | 0;
-     $lib_typedarray_Float64Array___set(index_output, $0 & 255 | 0, ($7 + $9 * $1 - $10 * $1 * $1) / $1);
+     $lib_typedarray_Float64Array___uset(index_output, $0, ($7 + $9 * $1 - $10 * $1 * $1) / $1);
      $0 = $0 + 1 | 0;
-     $lib_typedarray_Float64Array___set(index_output, $0 & 255 | 0, ($8 + $15 * $1) / $1);
+     $lib_typedarray_Float64Array___uset(index_output, $0, ($8 + $15 * $1) / $1);
      $11 = $11 + 1 | 0;
      $0 = $0 + 1 | 0;
     }
     $16 = $16 + 1 | 0;
-    continue for_loop_1;
+    continue for_loop_0;
    }
-   break for_loop_1;
+   break for_loop_0;
   };
-  if (($11 & 255 | 0) >>> 0 > 0 >>> 0) {
-   $lib_rt_pure___release($lib_typedarray_Float64Array_copyWithin(index_output, ($0 + 6 | 0) & 255 | 0, $0 & 255 | 0, ($0 + 3 | 0) & 255 | 0))
+  if (($11 | 0) > (0 | 0)) {
+   $lib_rt_pure___release($lib_typedarray_Float64Array_copyWithin(index_output, $0 + 6 | 0, $0, $0 + 3 | 0))
   }
-  if (($11 & 255 | 0) >>> 0 > 1 >>> 0) {
-   $lib_rt_pure___release($lib_typedarray_Float64Array_copyWithin(index_output, ($0 + 9 | 0) & 255 | 0, ($0 + 3 | 0) & 255 | 0, ($0 + 6 | 0) & 255 | 0))
+  if (($11 | 0) > (1 | 0)) {
+   $lib_rt_pure___release($lib_typedarray_Float64Array_copyWithin(index_output, $0 + 9 | 0, $0 + 3 | 0, $0 + 6 | 0))
   }
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_input));
   $lib_rt_pure___release($2);
-  return $11 & 255 | 0 | 0;
+  return $11 | 0;
  }
  
  function index_solveLateralStatic() {
   var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $6 = 0.0, $7 = 0.0;
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_output));
-  $0 = $lib_typedarray_Float64Array___get(index_input, 5);
-  $5 = $lib_typedarray_Float64Array___get(index_input, 6);
-  $1 = $lib_typedarray_Float64Array___get(index_input, 7);
-  $2 = $lib_typedarray_Float64Array___get(index_input, 8);
-  $6 = $lib_typedarray_Float64Array___get(index_input, 9);
-  $3 = $lib_typedarray_Float64Array___get(index_input, 10);
-  $4 = $lib_typedarray_Float64Array___get(index_input, 11);
-  $7 = $lib_typedarray_Float64Array___get(index_input, 12);
+  $0 = $lib_typedarray_Float64Array___uget(index_input, 5);
+  $5 = $lib_typedarray_Float64Array___uget(index_input, 6);
+  $1 = $lib_typedarray_Float64Array___uget(index_input, 7);
+  $2 = $lib_typedarray_Float64Array___uget(index_input, 8);
+  $6 = $lib_typedarray_Float64Array___uget(index_input, 9);
+  $3 = $lib_typedarray_Float64Array___uget(index_input, 10);
+  $4 = $lib_typedarray_Float64Array___uget(index_input, 11);
+  $7 = $lib_typedarray_Float64Array___uget(index_input, 12);
   $0 = $2 - $0;
   $1 = $3 - $1;
   $2 = Math_sqrt($0 * $0 + $1 * $1);
@@ -1595,77 +1725,74 @@ function asmFunc(global, env, buffer) {
    $0 = $0 * $3;
    $1 = $1 * $3;
   }
-  $lib_typedarray_Float64Array___set(index_output, 6, $0 * $4);
-  $lib_typedarray_Float64Array___set(index_output, 7, -(3.0 * $5 - 4.0 * $7 + $6) / $2);
-  $lib_typedarray_Float64Array___set(index_output, 8, $1 * $4);
-  $lib_typedarray_Float64Array___set(index_output, 9, -4.0 * ($5 - 2.0 * $7 + $6) / ($2 * $2));
+  $lib_typedarray_Float64Array___uset(index_output, 6, $0 * $4);
+  $lib_typedarray_Float64Array___uset(index_output, 7, -(3.0 * $5 - 4.0 * $7 + $6) / $2);
+  $lib_typedarray_Float64Array___uset(index_output, 8, $1 * $4);
+  $lib_typedarray_Float64Array___uset(index_output, 9, -4.0 * ($5 - 2.0 * $7 + $6) / ($2 * $2));
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_input));
   return 1 | 0;
  }
  
  function index_solveLateralMoving() {
-  var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $6 = 0, $7 = 0.0, $8 = 0.0, $9 = 0, $10 = 0.0, $11 = 0.0, $12 = 0.0, $13 = 0.0, $14 = 0.0;
+  var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0, $5 = 0.0, $6 = 0, $7 = 0.0, $8 = 0.0, $9 = 0.0, $10 = 0.0, $11 = 0.0, $12 = 0.0, $13 = 0.0, $14 = 0.0, $15 = 0.0;
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_output));
-  $3 = $lib_typedarray_Float64Array___get(index_input, 5);
-  $10 = $lib_typedarray_Float64Array___get(index_input, 6);
-  $12 = $lib_typedarray_Float64Array___get(index_input, 7);
-  $7 = $lib_typedarray_Float64Array___get(index_input, 8);
-  $1 = $lib_typedarray_Float64Array___get(index_input, 9);
-  $13 = $lib_typedarray_Float64Array___get(index_input, 10);
-  $8 = $lib_typedarray_Float64Array___get(index_input, 11);
-  $2 = $lib_typedarray_Float64Array___get(index_input, 12);
-  $5 = $lib_typedarray_Float64Array___get(index_input, 13);
-  $4 = $lib_typedarray_Float64Array___get(index_input, 14);
-  $14 = $lib_typedarray_Float64Array___get(index_input, 15);
-  $lib_typedarray_Float64Array___set(index_input, 0, $2 * $2 + $4 * $4 - $8 * $8);
-  $0 = $7 - $3;
-  $11 = $13 - $12;
-  $lib_typedarray_Float64Array___set(index_input, 1, 2.0 * $0 * $2 + $11 * $4);
-  $lib_typedarray_Float64Array___set(index_input, 2, $0 * $0 + $11 * $11);
-  $6 = index_SolveQuadric(0, 1);
-  if ($6 >>> 0 > 0 >>> 0) {
-   $9 = $lib_typedarray_Float64Array___get(index_output, 0) > 0.0
-  } else {
-   $9 = 0
+  $13 = $lib_typedarray_Float64Array___uget(index_input, 5);
+  $12 = $lib_typedarray_Float64Array___uget(index_input, 6);
+  $14 = $lib_typedarray_Float64Array___uget(index_input, 7);
+  $2 = $lib_typedarray_Float64Array___uget(index_input, 8);
+  $7 = $lib_typedarray_Float64Array___uget(index_input, 9);
+  $3 = $lib_typedarray_Float64Array___uget(index_input, 10);
+  $8 = $lib_typedarray_Float64Array___uget(index_input, 11);
+  $9 = $lib_typedarray_Float64Array___uget(index_input, 12);
+  $1 = $lib_typedarray_Float64Array___uget(index_input, 13);
+  $10 = $lib_typedarray_Float64Array___uget(index_input, 14);
+  $15 = $lib_typedarray_Float64Array___uget(index_input, 15);
+  $lib_typedarray_Float64Array___uset(index_input, 0, $9 * $9 + $10 * $10 - $8 * $8);
+  $5 = $2 - $13;
+  $0 = $3 - $14;
+  $lib_typedarray_Float64Array___uset(index_input, 1, 2.0 * $5 * $9 + $0 * $10);
+  $lib_typedarray_Float64Array___uset(index_input, 2, $5 * $5 + $0 * $0);
+  $4 = index_SolveQuadric(0, 1);
+  $6 = ($4 | 0) > (0 | 0);
+  if ($6) {
+   $6 = $lib_typedarray_Float64Array___uget(index_output, 0) > 0.0
   }
-  $0 = $1;
-  if ($6 >>> 0 > 1 >>> 0) {
-   $6 = $lib_typedarray_Float64Array___get(index_output, 1) > 0.0
-  } else {
-   $6 = 0
+  $4 = ($4 | 0) > (1 | 0);
+  if ($4) {
+   $4 = $lib_typedarray_Float64Array___uget(index_output, 1) > 0.0
   }
-  if ($9 ? 0 : !$6) {
+  if ($6 ? 0 : !$4) {
    return 0 | 0
   } else {
-   if ($9 ? $6 : 0) {
-    $1 = Math_min($lib_typedarray_Float64Array___get(index_output, 0), $lib_typedarray_Float64Array___get(index_output, 1))
+   if ($6 ? $4 : 0) {
+    $0 = Math_min($lib_typedarray_Float64Array___uget(index_output, 0), $lib_typedarray_Float64Array___uget(index_output, 1))
    } else {
-    if ($9) {
-     $1 = $lib_typedarray_Float64Array___get(index_output, 0)
+    if ($6) {
+     $0 = $lib_typedarray_Float64Array___uget(index_output, 0)
     } else {
-     $1 = $lib_typedarray_Float64Array___get(index_output, 1)
+     $0 = $lib_typedarray_Float64Array___uget(index_output, 1)
     }
    }
   }
-  $5 = $0 + $5 * $1;
-  $7 = $7 + $2 * $1;
-  $0 = $7 - $3;
-  $4 = $13 + $4 * $1;
-  $2 = $4 - $12;
-  $3 = $0 * $0 + $2 * $2;
-  if ($3 > 0.0) {
-   $3 = 1.0 / Math_sqrt($3);
-   $0 = $0 * $3;
-   $2 = $2 * $3;
+  $11 = $7 + $1 * $0;
+  $5 = $2 + $9 * $0;
+  $2 = $5 - $13;
+  $7 = $3 + $10 * $0;
+  $3 = $7 - $14;
+  $1 = $2 * $2 + $3 * $3;
+  if ($1 > 0.0) {
+   $1 = 1.0 / Math_sqrt($1);
+   $2 = $2 * $1;
+   $3 = $3 * $1;
   }
-  $lib_typedarray_Float64Array___set(index_output, 6, $0 * $8);
-  $0 = Math_max($10, $5) + $14;
-  $lib_typedarray_Float64Array___set(index_output, 7, -(3.0 * $10 - 4.0 * $0 + $5) / $1);
-  $lib_typedarray_Float64Array___set(index_output, 8, $2 * $8);
-  $lib_typedarray_Float64Array___set(index_output, 9, $7);
-  $lib_typedarray_Float64Array___set(index_output, 10, $5);
-  $lib_typedarray_Float64Array___set(index_output, 11, $4);
-  $lib_typedarray_Float64Array___set(index_output, 12, -4.0 * ($10 - 2.0 * $0 + $5) / ($1 * $1));
+  $lib_typedarray_Float64Array___uset(index_output, 6, $2 * $8);
+  $1 = Math_max($12, $11) + $15;
+  $lib_typedarray_Float64Array___uset(index_output, 7, -(3.0 * $12 - 4.0 * $1 + $11) / $0);
+  $lib_typedarray_Float64Array___uset(index_output, 8, $3 * $8);
+  $lib_typedarray_Float64Array___uset(index_output, 9, $5);
+  $lib_typedarray_Float64Array___uset(index_output, 10, $11);
+  $lib_typedarray_Float64Array___uset(index_output, 11, $7);
+  $lib_typedarray_Float64Array___uset(index_output, 12, -4.0 * ($12 - 2.0 * $1 + $11) / ($0 * $0));
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_input));
   return 1 | 0;
  }

@@ -18,7 +18,7 @@ function compile(cb) {
         "-b", "../dist/assembly/ballistics.wasm",
         "-t", "../dist/assembly/ballistics.wat",
         "-j", "../dist/assembly/ballistics.asc.js",
-        "-O3z", "--converge", "--noAssert",
+        "-O3s", "--converge", "--noAssert",
         "--runtime", "full",
         "--sourceMap"
     ], cb);
@@ -48,6 +48,6 @@ function copyWasm(cb) {
     .pipe(dest('dist/pc-ballistics'));
     cb();
 }
- 
+
 exports.build = series(clean, compile, parallel(bundle, copyWasm));
 exports.default = series(clean, compile, parallel(bundle, copyWasm));
