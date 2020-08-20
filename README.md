@@ -10,7 +10,9 @@
 Ever wondered, what impulse should I apply to the projectile so that it hits the target? This library will give you an answer. Ballistics is a WASM library that helps to calculate a proper velocity vector for projectiles.
 
 [Playcanvas Project](https://playcanvas.com/project/709275/overview/ballistics)
+
 [Live Demo](https://playcanv.as/p/QOb0M5Ud/)
+
 <a href='https://ko-fi.com/P5P61Y9F7' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=2' border='0' alt='Grab Me a Coffee at ko-fi.com' /></a>
 
 The library is based on the wonderful magic of trajectory calculations by Forrest Smith. Check out his [original post](https://www.forrestthewoods.com/blog/solving_ballistic_trajectories/) with the explanations.
