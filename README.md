@@ -30,7 +30,7 @@ Library features a low-level WASM binary and a high-level platform implementatio
 See this [sample project](https://playcanvas.com/project/709275/overview/ballistics) for a simple setup.
 
 ### API
-You can find following API specs in Wiki:
+You can find following API specs in this repository Wiki:
 - Low level WASM binary API. You want this, if you are making your own implementation.
 - High level Playcanvas implementation API. You want this, if you use this library with Playcanvas.
 
