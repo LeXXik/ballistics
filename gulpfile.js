@@ -24,10 +24,11 @@ function compile(cb) {
     ], cb);
 }
 
+// playcanvas implementation
 const prod = true;
 function bundle(cb) {
     rollup.rollup({
-        input: 'ballistics.js',
+        input: 'impl/playcanvas/ballistics.js',
         plugins: [resolve(), commonjs(), prod && terser()]
     }).then(bundle => {
         return bundle.write({
