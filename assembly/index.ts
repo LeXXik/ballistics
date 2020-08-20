@@ -216,7 +216,7 @@ export function SolveQuartic(): u8 {
 //
 //   input buffer at INPUT_BUFFER_OFFSET:
 //  |------------------------------------------------------------------|
-//  | [  0 ]:  <f64>   projectile velocity                             |
+//  | [  0 ]:  <f64>   projectile speed                                |
 //  |------------------------------------------------------------------|
 //  | [  1 ]:  <f64>   force of gravity, positive is down              |
 //  |------------------------------------------------------------------|
