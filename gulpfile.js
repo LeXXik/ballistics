@@ -18,7 +18,7 @@ function compile(cb) {
         "-b", "../dist/assembly/ballistics.wasm",
         "-t", "../dist/assembly/ballistics.wat",
         "-j", "../dist/assembly/ballistics.asc.js",
-        "-O3s", "--converge", "--noAssert",
+        "-O3", "--converge", "--noAssert",
         "--runtime", "full",
         "--sourceMap"
     ], cb);
