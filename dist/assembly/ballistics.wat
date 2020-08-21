@@ -5175,7 +5175,7 @@
   f64.mul
   f64.add
   local.get $10
-  f64.add
+  f64.sub
   local.get $3
   f64.div
   call $~lib/typedarray/Float64Array#__uset

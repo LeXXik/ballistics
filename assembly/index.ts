@@ -756,7 +756,7 @@ export function solveLateralMoving(): i32 {
 
     // fire_velocity
     unchecked(output[outOffset++] = dirx);
-    unchecked(output[outOffset++] = (-3 * py + 4 * b + ipy) / t);
+    unchecked(output[outOffset++] = (-3 * py + 4 * b - ipy) / t);
     unchecked(output[outOffset++] = dirz);
 
     // impact_point

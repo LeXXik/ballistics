@@ -1807,7 +1807,7 @@ function asmFunc(global, env, buffer) {
   }
   $lib_typedarray_Float64Array___uset(index_output, 6, $2 * $8);
   $1 = Math_max($12, $11) + $15;
-  $lib_typedarray_Float64Array___uset(index_output, 7, (-3.0 * $12 + 4.0 * $1 + $11) / $0);
+  $lib_typedarray_Float64Array___uset(index_output, 7, (-3.0 * $12 + 4.0 * $1 - $11) / $0);
   $lib_typedarray_Float64Array___uset(index_output, 8, $3 * $8);
   $lib_typedarray_Float64Array___uset(index_output, 9, $5);
   $lib_typedarray_Float64Array___uset(index_output, 10, $11);
