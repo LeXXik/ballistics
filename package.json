@@ -1,6 +1,6 @@
 {
   "name": "ballistics",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Ballistics WASM library for calculating projectile impulses",
   "main": "index.js",
   "scripts": {
