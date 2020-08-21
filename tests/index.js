@@ -1,8 +1,6 @@
 const assert = require("assert");
 const ballistics = require("..");
-const { __release, __getArray, __getArrayView } = require("..");
-const { isDeepStrictEqual } = require("util");
-const { clear } = require("console");
+const { __release, __getArrayView } = require("..");
 
 const js = require("./test.js"); // for WASM vs JS test
 
@@ -57,9 +55,9 @@ let end = 0;
     input[0] = 1;
     input[1] = -3;
     input[2] = 10;
-    
+
     s = ballistics.SolveQuadric();
-    
+
     assert(s === 0);
 
     clearBuffers();
