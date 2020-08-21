@@ -1,11 +1,10 @@
 (module
  (type $none_=>_i32 (func (result i32)))
- (type $i32_i32_=>_none (func (param i32 i32)))
- (type $f64_f64_=>_i32 (func (param f64 f64) (result i32)))
  (type $f64_=>_f64 (func (param f64) (result f64)))
  (type $i32_=>_none (func (param i32)))
  (type $i32_i32_=>_i32 (func (param i32 i32) (result i32)))
  (type $none_=>_none (func))
+ (type $i32_i32_=>_none (func (param i32 i32)))
  (type $i32_=>_i32 (func (param i32) (result i32)))
  (type $i32_i32_i32_=>_none (func (param i32 i32 i32)))
  (type $i32_i32_i32_i32_=>_none (func (param i32 i32 i32 i32)))
@@ -24,10 +23,7 @@
  (data (i32.const 1248) "$\00\00\00\01\00\00\00\01\00\00\00$\00\00\00I\00n\00d\00e\00x\00 \00o\00u\00t\00 \00o\00f\00 \00r\00a\00n\00g\00e")
  (data (i32.const 1312) "$\00\00\00\01\00\00\00\01\00\00\00$\00\00\00~\00l\00i\00b\00/\00t\00y\00p\00e\00d\00a\00r\00r\00a\00y\00.\00t\00s")
  (data (i32.const 1368) "n\83\f9\a2\00\00\00\00\d1W\'\fc)\15DN\99\95b\db\c0\dd4\f5\abcQ\feA\90C<:n$\b7a\c5\bb\de\ea.I\06\e0\d2MB\1c\eb\1d\fe\1c\92\d1\t\f55\82\e8>\a7)\b1&p\9c\e9\84D\bb.9\d6\919A~_\b4\8b_\84\9c\f49S\83\ff\97\f8\1f;(\f9\bd\8b\11/\ef\0f\98\05\de\cf~6m\1fm\nZf?FO\b7\t\cb\'\c7\ba\'u-\ea_\9e\f79\07={\f1\e5\eb\b1_\fbk\ea\92R\8aF0\03V\08]\8d\1f \bc\cf\f0\abk{\fca\91\e3\a9\1d6\f4\9a_\85\99e\08\1b\e6^\80\d8\ff\8d@h\a0\14W\15\06\061\'sM")
- (data (i32.const 1568) "\08\00\00\00\01\00\00\00\04\00\00\00\08\00\00\00\01")
- (data (i32.const 1600) "\05\00\00\00 \00\00\00\00\00\00\00 \00\00\00\00\00\00\00 \00\00\00\00\00\00\00!\1a\00\00\02\00\00\00 ")
- (table $0 2 funcref)
- (elem (i32.const 1) $~lib/util/sort/COMPARATOR<f64>~anonymous|0)
+ (data (i32.const 1568) "\04\00\00\00 \00\00\00\00\00\00\00 \00\00\00\00\00\00\00 \00\00\00\00\00\00\00!\1a\00\00\02")
  (global $~lib/rt/tlsf/ROOT (mut i32) (i32.const 0))
  (global $index/INPUT_BUFFER_OFFSET i32 (i32.const 5))
  (global $index/OUTPUT_BUFFER_OFFSET i32 (i32.const 6))
@@ -38,8 +34,8 @@
  (global $~lib/math/res128_hi (mut i64) (i64.const 0))
  (global $~lib/math/NativeMath.sincos_sin (mut f64) (f64.const 0))
  (global $~lib/math/NativeMath.sincos_cos (mut f64) (f64.const 0))
+ (global $~lib/rt/__rtti_base i32 (i32.const 1568))
  (global $~argumentsLength (mut i32) (i32.const 0))
- (global $~lib/rt/__rtti_base i32 (i32.const 1600))
  (export "memory" (memory $0))
  (export "__alloc" (func $~lib/rt/tlsf/__alloc))
  (export "__retain" (func $~lib/rt/pure/__retain))
@@ -455,12 +451,12 @@
    if
     unreachable
    end
-   i32.const 1648
+   i32.const 1616
    local.set $2
-   i32.const 1648
+   i32.const 1616
    i32.const 0
    i32.store
-   i32.const 3216
+   i32.const 3184
    i32.const 0
    i32.store
    loop $for-loop|0
@@ -471,7 +467,7 @@
      local.get $1
      i32.const 2
      i32.shl
-     i32.const 1648
+     i32.const 1616
      i32.add
      i32.const 0
      i32.store offset=4
@@ -489,7 +485,7 @@
        i32.add
        i32.const 2
        i32.shl
-       i32.const 1648
+       i32.const 1616
        i32.add
        i32.const 0
        i32.store offset=96
@@ -507,13 +503,13 @@
      br $for-loop|0
     end
    end
-   i32.const 1648
-   i32.const 3232
+   i32.const 1616
+   i32.const 3200
    memory.size
    i32.const 16
    i32.shl
    call $~lib/rt/tlsf/addMemory
-   i32.const 1648
+   i32.const 1616
    global.set $~lib/rt/tlsf/ROOT
   end
   local.get $2
@@ -811,7 +807,7 @@
  (func $~lib/rt/pure/__retain (param $0 i32) (result i32)
   (local $1 i32)
   local.get $0
-  i32.const 1644
+  i32.const 1604
   i32.gt_u
   if
    local.get $0
@@ -831,7 +827,7 @@
  )
  (func $~lib/rt/pure/__release (param $0 i32)
   local.get $0
-  i32.const 1644
+  i32.const 1604
   i32.gt_u
   if
    local.get $0
@@ -840,67 +836,48 @@
    call $~lib/rt/pure/decrement
   end
  )
- (func $~lib/memory/memory.fill (param $0 i32) (param $1 i32)
+ (func $~lib/memory/memory.fill (param $0 i32)
+  (local $1 i32)
   (local $2 i32)
   block $~lib/util/memory/memset|inlined.0
-   local.get $1
-   i32.eqz
-   br_if $~lib/util/memory/memset|inlined.0
    local.get $0
    i32.const 0
    i32.store8
    local.get $0
-   local.get $1
-   i32.add
-   i32.const 4
-   i32.sub
-   local.tee $2
    i32.const 0
-   i32.store8 offset=3
-   local.get $1
-   i32.const 2
-   i32.le_u
-   br_if $~lib/util/memory/memset|inlined.0
+   i32.store8 offset=159
    local.get $0
    i32.const 0
    i32.store8 offset=1
    local.get $0
    i32.const 0
    i32.store8 offset=2
-   local.get $2
+   local.get $0
    i32.const 0
-   i32.store8 offset=2
-   local.get $2
+   i32.store8 offset=158
+   local.get $0
    i32.const 0
-   i32.store8 offset=1
-   local.get $1
-   i32.const 6
-   i32.le_u
-   br_if $~lib/util/memory/memset|inlined.0
+   i32.store8 offset=157
    local.get $0
    i32.const 0
    i32.store8 offset=3
-   local.get $2
+   local.get $0
    i32.const 0
-   i32.store8
-   local.get $1
-   i32.const 8
-   i32.le_u
-   br_if $~lib/util/memory/memset|inlined.0
+   i32.store8 offset=156
    local.get $0
    i32.const 0
    local.get $0
    i32.sub
    i32.const 3
    i32.and
-   local.tee $2
+   local.tee $1
    i32.add
    local.tee $0
    i32.const 0
    i32.store
    local.get $0
+   i32.const 160
    local.get $1
-   local.get $2
    i32.sub
    i32.const -4
    i32.and
@@ -1029,7 +1006,6 @@
   i32.const 0
   call $~lib/rt/tlsf/__alloc
   local.tee $1
-  i32.const 160
   call $~lib/memory/memory.fill
   local.get $1
   local.set $2
@@ -3739,432 +3715,22 @@
   call $~lib/rt/pure/__release
   local.get $8
  )
- (func $~lib/util/sort/insertionSort<f64> (param $0 i32) (param $1 i32)
-  (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 f64)
-  (local $6 f64)
-  loop $for-loop|0
-   local.get $4
-   local.get $1
-   i32.lt_s
-   if
-    local.get $0
-    local.get $4
-    i32.const 3
-    i32.shl
-    i32.add
-    f64.load
-    local.set $5
-    local.get $4
-    i32.const 1
-    i32.sub
-    local.set $2
-    loop $while-continue|1
-     local.get $2
-     i32.const 0
-     i32.ge_s
-     if
-      block $while-break|1
-       local.get $0
-       local.get $2
-       i32.const 3
-       i32.shl
-       i32.add
-       f64.load
-       local.set $6
-       i32.const 2
-       global.set $~argumentsLength
-       local.get $5
-       local.get $6
-       i32.const 1584
-       i32.load
-       call_indirect (type $f64_f64_=>_i32)
-       i32.const 0
-       i32.ge_s
-       br_if $while-break|1
-       local.get $2
-       local.tee $3
-       i32.const 1
-       i32.sub
-       local.set $2
-       local.get $0
-       local.get $3
-       i32.const 1
-       i32.add
-       i32.const 3
-       i32.shl
-       i32.add
-       local.get $6
-       f64.store
-       br $while-continue|1
-      end
-     end
-    end
-    local.get $0
-    local.get $2
-    i32.const 1
-    i32.add
-    i32.const 3
-    i32.shl
-    i32.add
-    local.get $5
-    f64.store
-    local.get $4
-    i32.const 1
-    i32.add
-    local.set $4
-    br $for-loop|0
-   end
-  end
- )
- (func $~lib/rt/tlsf/freeBlock (param $0 i32) (param $1 i32)
-  local.get $1
-  local.get $1
-  i32.load
-  i32.const 1
-  i32.or
-  i32.store
-  local.get $0
-  local.get $1
-  call $~lib/rt/tlsf/insertBlock
- )
- (func $~lib/util/sort/weakHeapSort<f64> (param $0 i32) (param $1 i32)
-  (local $2 i32)
-  (local $3 i32)
-  (local $4 f64)
-  (local $5 i32)
-  (local $6 f64)
-  (local $7 i32)
-  local.get $1
-  i32.const 31
-  i32.add
-  i32.const 5
-  i32.shr_u
-  i32.const 2
-  i32.shl
-  local.tee $2
-  i32.const 0
-  call $~lib/rt/tlsf/__alloc
-  local.tee $5
-  local.get $2
-  call $~lib/memory/memory.fill
-  local.get $1
-  i32.const 1
-  i32.sub
-  local.set $3
-  loop $for-loop|0
-   local.get $3
-   i32.const 0
-   i32.gt_s
-   if
-    local.get $3
-    local.set $2
-    loop $while-continue|1
-     local.get $2
-     i32.const 1
-     i32.and
-     local.get $5
-     local.get $2
-     i32.const 6
-     i32.shr_u
-     i32.const 2
-     i32.shl
-     i32.add
-     i32.load
-     local.get $2
-     i32.const 1
-     i32.shr_s
-     i32.const 31
-     i32.and
-     i32.shr_u
-     i32.const 1
-     i32.and
-     i32.eq
-     if
-      local.get $2
-      i32.const 1
-      i32.shr_s
-      local.set $2
-      br $while-continue|1
-     end
-    end
-    local.get $0
-    local.get $2
-    i32.const 1
-    i32.shr_s
-    local.tee $2
-    i32.const 3
-    i32.shl
-    i32.add
-    f64.load
-    local.set $4
-    local.get $0
-    local.get $3
-    i32.const 3
-    i32.shl
-    i32.add
-    f64.load
-    local.set $6
-    i32.const 2
-    global.set $~argumentsLength
-    local.get $4
-    local.get $6
-    i32.const 1584
-    i32.load
-    call_indirect (type $f64_f64_=>_i32)
-    i32.const 0
-    i32.lt_s
-    if
-     local.get $5
-     local.get $3
-     i32.const 5
-     i32.shr_u
-     i32.const 2
-     i32.shl
-     i32.add
-     local.tee $7
-     local.get $7
-     i32.load
-     i32.const 1
-     local.get $3
-     i32.const 31
-     i32.and
-     i32.shl
-     i32.xor
-     i32.store
-     local.get $0
-     local.get $3
-     i32.const 3
-     i32.shl
-     i32.add
-     local.get $4
-     f64.store
-     local.get $0
-     local.get $2
-     i32.const 3
-     i32.shl
-     i32.add
-     local.get $6
-     f64.store
-    end
-    local.get $3
-    i32.const 1
-    i32.sub
-    local.set $3
-    br $for-loop|0
-   end
-  end
-  local.get $1
-  i32.const 1
-  i32.sub
-  local.set $3
-  loop $for-loop|2
-   local.get $3
-   i32.const 2
-   i32.ge_s
-   if
-    local.get $0
-    f64.load
-    local.set $4
-    local.get $0
-    local.get $0
-    local.get $3
-    i32.const 3
-    i32.shl
-    i32.add
-    local.tee $1
-    f64.load
-    f64.store
-    local.get $1
-    local.get $4
-    f64.store
-    i32.const 1
-    local.set $1
-    loop $while-continue|3
-     local.get $5
-     local.get $1
-     i32.const 5
-     i32.shr_u
-     i32.const 2
-     i32.shl
-     i32.add
-     i32.load
-     local.get $1
-     i32.const 31
-     i32.and
-     i32.shr_u
-     i32.const 1
-     i32.and
-     local.get $1
-     i32.const 1
-     i32.shl
-     i32.add
-     local.tee $2
-     local.get $3
-     i32.lt_s
-     if
-      local.get $2
-      local.set $1
-      br $while-continue|3
-     end
-    end
-    loop $while-continue|4
-     local.get $1
-     i32.const 0
-     i32.gt_s
-     if
-      local.get $0
-      f64.load
-      local.set $4
-      local.get $0
-      local.get $1
-      i32.const 3
-      i32.shl
-      i32.add
-      f64.load
-      local.set $6
-      i32.const 2
-      global.set $~argumentsLength
-      local.get $4
-      local.get $6
-      i32.const 1584
-      i32.load
-      call_indirect (type $f64_f64_=>_i32)
-      i32.const 0
-      i32.lt_s
-      if
-       local.get $5
-       local.get $1
-       i32.const 5
-       i32.shr_u
-       i32.const 2
-       i32.shl
-       i32.add
-       local.tee $2
-       local.get $2
-       i32.load
-       i32.const 1
-       local.get $1
-       i32.const 31
-       i32.and
-       i32.shl
-       i32.xor
-       i32.store
-       local.get $0
-       local.get $1
-       i32.const 3
-       i32.shl
-       i32.add
-       local.get $4
-       f64.store
-       local.get $0
-       local.get $6
-       f64.store
-      end
-      local.get $1
-      i32.const 1
-      i32.shr_s
-      local.set $1
-      br $while-continue|4
-     end
-    end
-    local.get $3
-    i32.const 1
-    i32.sub
-    local.set $3
-    br $for-loop|2
-   end
-  end
-  call $~lib/rt/tlsf/maybeInitialize
-  local.get $5
-  i32.const 16
-  i32.sub
-  local.set $1
-  local.get $5
-  i32.const 15
-  i32.and
-  i32.eqz
-  i32.const 0
-  local.get $5
-  select
-  if (result i32)
-   local.get $1
-   i32.load
-   i32.const 1
-   i32.and
-   i32.eqz
-  else
-   i32.const 0
-  end
-  if
-   local.get $1
-   i32.load offset=4
-   drop
-  end
-  local.get $1
-  call $~lib/rt/tlsf/freeBlock
-  local.get $0
-  f64.load offset=8
-  local.set $4
-  local.get $0
-  local.get $0
-  f64.load
-  f64.store offset=8
-  local.get $0
-  local.get $4
-  f64.store
- )
- (func $~lib/util/sort/COMPARATOR<f64>~anonymous|0 (param $0 f64) (param $1 f64) (result i32)
-  (local $2 i64)
-  (local $3 i64)
-  local.get $0
-  i64.reinterpret_f64
-  local.tee $2
-  local.get $2
-  i64.const 63
-  i64.shr_s
-  i64.const 1
-  i64.shr_u
-  i64.xor
-  local.tee $2
-  local.get $1
-  i64.reinterpret_f64
-  local.tee $3
-  local.get $3
-  i64.const 63
-  i64.shr_s
-  i64.const 1
-  i64.shr_u
-  i64.xor
-  local.tee $3
-  i64.gt_s
-  local.get $2
-  local.get $3
-  i64.lt_s
-  i32.sub
- )
  (func $index/solveArcMoving (result i32)
   (local $0 i32)
   (local $1 f64)
-  (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
+  (local $2 f64)
+  (local $3 f64)
+  (local $4 f64)
+  (local $5 f64)
   (local $6 f64)
   (local $7 f64)
-  (local $8 f64)
+  (local $8 i32)
   (local $9 f64)
   (local $10 f64)
-  (local $11 i32)
-  (local $12 f64)
+  (local $11 f64)
+  (local $12 i32)
   (local $13 f64)
-  (local $14 f64)
-  (local $15 f64)
-  (local $16 i32)
-  (local $17 f64)
-  (local $18 i32)
+  (local $14 i32)
   global.get $index/output
   call $~lib/typedarray/Float64Array#fill
   call $~lib/rt/pure/__release
@@ -4173,15 +3739,15 @@
   global.get $index/input
   i32.const 5
   call $~lib/typedarray/Float64Array#__uget
-  local.set $6
+  local.set $3
   global.get $index/input
   i32.const 6
   call $~lib/typedarray/Float64Array#__uget
-  local.set $7
+  local.set $4
   global.get $index/input
   i32.const 7
   call $~lib/typedarray/Float64Array#__uget
-  local.set $8
+  local.set $5
   global.get $index/input
   i32.const 8
   call $~lib/typedarray/Float64Array#__uget
@@ -4189,239 +3755,222 @@
   global.get $index/input
   i32.const 9
   call $~lib/typedarray/Float64Array#__uget
-  local.set $12
+  local.set $2
   global.get $index/input
   i32.const 10
   call $~lib/typedarray/Float64Array#__uget
-  local.set $15
+  local.set $11
   global.get $index/input
   i32.const 11
   call $~lib/typedarray/Float64Array#__uget
-  local.set $17
+  local.set $13
   global.get $index/input
   i32.const 12
   call $~lib/typedarray/Float64Array#__uget
-  local.set $13
+  local.set $9
   global.get $index/input
   i32.const 13
   call $~lib/typedarray/Float64Array#__uget
-  local.set $9
+  local.set $6
   global.get $index/input
   i32.const 14
   call $~lib/typedarray/Float64Array#__uget
-  local.set $14
+  local.set $10
   f64.const -0.5
   global.get $index/input
   i32.const 15
   call $~lib/typedarray/Float64Array#__uget
   f64.mul
-  local.set $10
+  local.set $7
   global.get $index/input
   i32.const 0
-  local.get $10
-  local.get $10
+  local.get $7
+  local.get $7
   f64.mul
   call $~lib/typedarray/Float64Array#__uset
   global.get $index/input
   i32.const 1
   f64.const 2
-  local.get $9
+  local.get $6
   f64.mul
-  local.get $10
+  local.get $7
   f64.mul
   call $~lib/typedarray/Float64Array#__uset
   global.get $index/input
   i32.const 2
-  local.get $9
-  local.get $9
+  local.get $6
+  local.get $6
   f64.mul
   f64.const 2
-  local.get $15
+  local.get $11
+  local.get $4
+  f64.sub
+  local.tee $4
+  f64.mul
+  local.tee $11
   local.get $7
-  f64.sub
-  local.tee $7
   f64.mul
-  local.tee $15
+  f64.add
+  local.get $1
+  local.get $1
+  f64.mul
+  f64.sub
+  local.get $9
+  local.get $9
+  f64.mul
+  f64.add
   local.get $10
-  f64.mul
-  f64.add
-  local.get $1
-  local.get $1
-  f64.mul
-  f64.sub
-  local.get $13
-  local.get $13
-  f64.mul
-  f64.add
-  local.get $14
-  local.get $14
+  local.get $10
   f64.mul
   f64.add
   call $~lib/typedarray/Float64Array#__uset
   global.get $index/input
   i32.const 3
-  local.get $15
-  local.get $9
+  local.get $11
+  local.get $6
   f64.mul
   f64.const 2
-  local.get $12
-  local.get $6
+  local.get $2
+  local.get $3
   f64.sub
-  local.tee $6
+  local.tee $3
   f64.mul
-  local.get $13
+  local.get $9
   f64.mul
   f64.add
   f64.const 2
-  local.get $17
-  local.get $8
+  local.get $13
+  local.get $5
   f64.sub
-  local.tee $8
+  local.tee $5
   f64.mul
-  local.get $14
+  local.get $10
   f64.mul
   f64.add
   call $~lib/typedarray/Float64Array#__uset
   global.get $index/input
   i32.const 4
-  local.get $7
-  local.get $7
+  local.get $4
+  local.get $4
   f64.mul
-  local.get $6
-  local.get $6
+  local.get $3
+  local.get $3
   f64.mul
   f64.add
-  local.get $8
-  local.get $8
+  local.get $5
+  local.get $5
   f64.mul
   f64.add
   call $~lib/typedarray/Float64Array#__uset
   call $index/SolveQuartic
-  local.set $18
+  local.set $14
   global.get $index/output
-  call $~lib/rt/pure/__retain
-  local.tee $3
-  i32.load offset=8
-  i32.const 3
-  i32.shr_u
-  local.set $2
-  i32.const 12
-  i32.const 3
-  call $~lib/rt/tlsf/__alloc
-  local.tee $4
-  local.get $3
-  i32.load
-  call $~lib/rt/pure/__retain
-  i32.store
-  local.get $4
-  local.get $3
-  i32.load offset=4
   i32.const 0
-  local.get $2
-  i32.const 0
-  local.get $2
-  i32.lt_s
-  select
-  local.tee $5
-  i32.const 3
-  i32.shl
-  i32.add
-  i32.store offset=4
-  local.get $4
-  i32.const 4
-  local.get $2
-  i32.const 4
-  local.get $2
-  i32.lt_s
-  select
+  call $~lib/typedarray/Float64Array#__uget
+  local.tee $1
+  global.get $index/output
+  i32.const 1
+  call $~lib/typedarray/Float64Array#__uget
   local.tee $2
-  local.get $5
-  local.get $2
-  local.get $5
-  i32.gt_s
-  select
-  local.get $5
-  i32.sub
-  i32.const 3
-  i32.shl
-  i32.store offset=8
-  local.get $4
-  call $~lib/rt/pure/__retain
-  local.set $4
-  local.get $3
-  call $~lib/rt/pure/__release
-  i32.const 0
-  global.set $~argumentsLength
-  block $~lib/typedarray/SORT<~lib/typedarray/Float64Array,f64>|inlined.0
-   local.get $4
-   call $~lib/rt/pure/__retain
-   local.tee $5
-   i32.load offset=8
-   i32.const 3
-   i32.shr_u
-   local.tee $3
+  f64.gt
+  if
+   global.get $index/output
+   i32.const 0
+   local.get $2
+   call $~lib/typedarray/Float64Array#__uset
+   global.get $index/output
    i32.const 1
-   i32.le_s
-   br_if $~lib/typedarray/SORT<~lib/typedarray/Float64Array,f64>|inlined.0
-   local.get $5
-   i32.load offset=4
-   local.set $2
-   local.get $3
-   i32.const 2
-   i32.eq
-   if
-    local.get $2
-    f64.load offset=8
-    local.set $1
-    local.get $2
-    f64.load
-    local.set $12
-    i32.const 2
-    global.set $~argumentsLength
-    local.get $1
-    local.get $12
-    i32.const 1584
-    i32.load
-    call_indirect (type $f64_f64_=>_i32)
-    i32.const 0
-    i32.lt_s
-    if
-     local.get $2
-     local.get $12
-     f64.store offset=8
-     local.get $2
-     local.get $1
-     f64.store
-    end
-    br $~lib/typedarray/SORT<~lib/typedarray/Float64Array,f64>|inlined.0
-   end
-   local.get $3
-   i32.const 256
-   i32.lt_s
-   if
-    local.get $2
-    local.get $3
-    call $~lib/util/sort/insertionSort<f64>
-   else
-    local.get $2
-    local.get $3
-    call $~lib/util/sort/weakHeapSort<f64>
-   end
+   local.get $1
+   call $~lib/typedarray/Float64Array#__uset
   end
-  local.get $5
-  call $~lib/rt/pure/__release
+  global.get $index/output
+  i32.const 2
+  call $~lib/typedarray/Float64Array#__uget
+  local.tee $1
+  global.get $index/output
+  i32.const 3
+  call $~lib/typedarray/Float64Array#__uget
+  local.tee $2
+  f64.gt
+  if
+   global.get $index/output
+   i32.const 2
+   local.get $2
+   call $~lib/typedarray/Float64Array#__uset
+   global.get $index/output
+   i32.const 3
+   local.get $1
+   call $~lib/typedarray/Float64Array#__uset
+  end
+  global.get $index/output
+  i32.const 0
+  call $~lib/typedarray/Float64Array#__uget
+  local.tee $1
+  global.get $index/output
+  i32.const 2
+  call $~lib/typedarray/Float64Array#__uget
+  local.tee $2
+  f64.gt
+  if
+   global.get $index/output
+   i32.const 0
+   local.get $2
+   call $~lib/typedarray/Float64Array#__uset
+   global.get $index/output
+   i32.const 2
+   local.get $1
+   call $~lib/typedarray/Float64Array#__uset
+  end
+  global.get $index/output
+  i32.const 1
+  call $~lib/typedarray/Float64Array#__uget
+  local.tee $1
+  global.get $index/output
+  i32.const 3
+  call $~lib/typedarray/Float64Array#__uget
+  local.tee $2
+  f64.gt
+  if
+   global.get $index/output
+   i32.const 1
+   local.get $2
+   call $~lib/typedarray/Float64Array#__uset
+   global.get $index/output
+   i32.const 3
+   local.get $1
+   call $~lib/typedarray/Float64Array#__uset
+  end
+  global.get $index/output
+  i32.const 1
+  call $~lib/typedarray/Float64Array#__uget
+  local.tee $1
+  global.get $index/output
+  i32.const 2
+  call $~lib/typedarray/Float64Array#__uget
+  local.tee $2
+  f64.gt
+  if
+   global.get $index/output
+   i32.const 1
+   local.get $2
+   call $~lib/typedarray/Float64Array#__uset
+   global.get $index/output
+   i32.const 2
+   local.get $1
+   call $~lib/typedarray/Float64Array#__uset
+  end
   loop $for-loop|0
-   local.get $11
+   local.get $8
    i32.const 2
    i32.lt_s
    i32.const 0
-   local.get $16
-   local.get $18
+   local.get $12
+   local.get $14
    i32.lt_s
    select
    if
     global.get $index/output
-    local.get $16
+    local.get $12
     call $~lib/typedarray/Float64Array#__uget
     local.tee $1
     f64.const 0
@@ -4430,8 +3979,8 @@
     if
      global.get $index/output
      local.get $0
-     local.get $6
-     local.get $13
+     local.get $3
+     local.get $9
      local.get $1
      f64.mul
      f64.add
@@ -4443,12 +3992,12 @@
      i32.const 1
      i32.add
      local.tee $0
-     local.get $7
-     local.get $9
+     local.get $4
+     local.get $6
      local.get $1
      f64.mul
      f64.add
-     local.get $10
+     local.get $7
      local.get $1
      f64.mul
      local.get $1
@@ -4462,31 +4011,31 @@
      i32.const 1
      i32.add
      local.tee $0
-     local.get $8
-     local.get $14
+     local.get $5
+     local.get $10
      local.get $1
      f64.mul
      f64.add
      local.get $1
      f64.div
      call $~lib/typedarray/Float64Array#__uset
-     local.get $11
+     local.get $8
      i32.const 1
      i32.add
-     local.set $11
+     local.set $8
      local.get $0
      i32.const 1
      i32.add
      local.set $0
     end
-    local.get $16
+    local.get $12
     i32.const 1
     i32.add
-    local.set $16
+    local.set $12
     br $for-loop|0
    end
   end
-  local.get $11
+  local.get $8
   i32.const 0
   i32.gt_s
   if
@@ -4519,7 +4068,7 @@
    call $~lib/typedarray/Float64Array#__uget
    call $~lib/typedarray/Float64Array#__uset
   end
-  local.get $11
+  local.get $8
   i32.const 1
   i32.gt_s
   if
@@ -4557,9 +4106,7 @@
   global.get $index/input
   call $~lib/typedarray/Float64Array#fill
   call $~lib/rt/pure/__release
-  local.get $4
-  call $~lib/rt/pure/__release
-  local.get $11
+  local.get $8
  )
  (func $index/solveLateralStatic (result i32)
   (local $0 f64)
@@ -4991,31 +4538,39 @@
   if
    block $__inlined_func$~lib/rt/__visit_members
     block $switch$1$default
-     block $switch$1$case$6
-      block $switch$1$case$4
-       local.get $0
-       i32.load offset=8
-       br_table $__inlined_func$~lib/rt/__visit_members $__inlined_func$~lib/rt/__visit_members $switch$1$case$4 $switch$1$case$4 $switch$1$case$6 $switch$1$default
-      end
+     block $switch$1$case$4
       local.get $0
-      i32.load offset=16
-      local.tee $1
-      if
-       local.get $1
-       call $~lib/rt/pure/__visit
-      end
-      br $__inlined_func$~lib/rt/__visit_members
+      i32.load offset=8
+      br_table $__inlined_func$~lib/rt/__visit_members $__inlined_func$~lib/rt/__visit_members $switch$1$case$4 $switch$1$case$4 $switch$1$default
      end
      local.get $0
-     i32.load offset=20
-     call $~lib/rt/pure/__visit
+     i32.load offset=16
+     local.tee $1
+     if
+      local.get $1
+      local.tee $2
+      i32.const 1604
+      i32.ge_u
+      if
+       local.get $2
+       i32.const 16
+       i32.sub
+       call $~lib/rt/pure/decrement
+      end
+     end
      br $__inlined_func$~lib/rt/__visit_members
     end
     unreachable
    end
+   local.get $0
+   local.get $0
+   i32.load
+   i32.const 1
+   i32.or
+   i32.store
    global.get $~lib/rt/tlsf/ROOT
    local.get $0
-   call $~lib/rt/tlsf/freeBlock
+   call $~lib/rt/tlsf/insertBlock
   else
    local.get $0
    local.get $2
@@ -5027,18 +4582,6 @@
    i32.or
    i32.store offset=4
   end
- )
- (func $~lib/rt/pure/__visit (param $0 i32)
-  local.get $0
-  i32.const 1644
-  i32.lt_u
-  if
-   return
-  end
-  local.get $0
-  i32.const 16
-  i32.sub
-  call $~lib/rt/pure/decrement
  )
  (func $index/SolveQuadric@varargs (param $0 i32) (param $1 i32) (result i32)
   block $2of2

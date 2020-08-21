@@ -23,6 +23,42 @@ function IsZero(d: f64): boolean {
     return Math.abs(d) < 1e-9;
 }
 
+@inline
+function sort4(): void {
+    // sort 4 value via sorting networks
+    let t0: f64, t1: f64;
+    t0 = unchecked(output[0]);
+    t1 = unchecked(output[1]);
+    if (t0 > t1) { // swap(0, 1)
+        unchecked(output[0] = t1);
+        unchecked(output[1] = t0);
+    }
+    t0 = unchecked(output[2]);
+    t1 = unchecked(output[3]);
+    if (t0 > t1) { // swap(2, 3)
+        unchecked(output[2] = t1);
+        unchecked(output[3] = t0);
+    }
+    t0 = unchecked(output[0]);
+    t1 = unchecked(output[2]);
+    if (t0 > t1) { // swap(0, 2)
+        unchecked(output[0] = t1);
+        unchecked(output[2] = t0);
+    }
+    t0 = unchecked(output[1]);
+    t1 = unchecked(output[3]);
+    if (t0 > t1) { // swap(1, 3)
+        unchecked(output[1] = t1);
+        unchecked(output[3] = t0);
+    }
+    t0 = unchecked(output[1]);
+    t1 = unchecked(output[2]);
+    if (t0 > t1) { // swap(1, 2)
+        unchecked(output[1] = t1);
+        unchecked(output[2] = t0);
+    }
+}
+
 /* normal form: a^2 + bx + c = 0 */
 // Returns number of solutions.
 export function SolveQuadric(index1: i32 = 0, index2: i32 = 1): i32 {
@@ -497,8 +533,7 @@ export function solveArcMoving(): i32 {
     const numTimes = SolveQuartic();
 
     // Sort so faster collision is found first
-    const sub = output.subarray(0, 4);
-    sub.sort();
+    sort4();
 
     // Plug quartic solutions into base equations
     // There should never be more than 2 positive, real roots.
