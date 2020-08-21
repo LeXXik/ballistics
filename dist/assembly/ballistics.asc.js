@@ -1365,7 +1365,7 @@ function asmFunc(global, env, buffer) {
       while_break_1 : {
        $argumentsLength = 2;
        $5 = HEAPF64[(($2 << 3 | 0) + $0 | 0) >> 3];
-       if ((FUNCTION_TABLE[HEAP32[1584 >> 2]]($4, $5) | 0 | 0) >= (0 | 0)) {
+       if ((FUNCTION_TABLE[HEAP32[1584 >> 2] | 0]($4, $5) | 0 | 0) >= (0 | 0)) {
         break while_break_1
        }
        $6 = $2;
@@ -1409,7 +1409,7 @@ function asmFunc(global, env, buffer) {
     $2 = $2 >> 1 | 0;
     $4 = HEAPF64[(($2 << 3 | 0) + $0 | 0) >> 3];
     $6 = HEAPF64[(($3 << 3 | 0) + $0 | 0) >> 3];
-    if ((FUNCTION_TABLE[HEAP32[1584 >> 2]]($4, $6) | 0 | 0) < (0 | 0)) {
+    if ((FUNCTION_TABLE[HEAP32[1584 >> 2] | 0]($4, $6) | 0 | 0) < (0 | 0)) {
      $7 = (($3 >>> 5 | 0) << 2 | 0) + $5 | 0;
      HEAP32[$7 >> 2] = HEAP32[$7 >> 2] ^ (1 << ($3 & 31 | 0) | 0) | 0;
      HEAPF64[(($3 << 3 | 0) + $0 | 0) >> 3] = $4;
@@ -1441,7 +1441,7 @@ function asmFunc(global, env, buffer) {
       $argumentsLength = 2;
       $4 = HEAPF64[$0 >> 3];
       $6 = HEAPF64[(($1 << 3 | 0) + $0 | 0) >> 3];
-      if ((FUNCTION_TABLE[HEAP32[1584 >> 2]]($4, $6) | 0 | 0) < (0 | 0)) {
+      if ((FUNCTION_TABLE[HEAP32[1584 >> 2] | 0]($4, $6) | 0 | 0) < (0 | 0)) {
        $2 = (($1 >>> 5 | 0) << 2 | 0) + $5 | 0;
        $7 = HEAP32[$2 >> 2] ^ (1 << ($1 & 31 | 0) | 0) | 0;
        HEAP32[$2 >> 2] = $7;
@@ -1660,7 +1660,7 @@ function asmFunc(global, env, buffer) {
     $argumentsLength = 2;
     $1 = HEAPF64[($3 + 8 | 0) >> 3];
     $12 = HEAPF64[$3 >> 3];
-    if ((FUNCTION_TABLE[HEAP32[1584 >> 2]]($1, $12) | 0 | 0) < (0 | 0)) {
+    if ((FUNCTION_TABLE[HEAP32[1584 >> 2] | 0]($1, $12) | 0 | 0) < (0 | 0)) {
      HEAPF64[($3 + 8 | 0) >> 3] = $12;
      HEAPF64[$3 >> 3] = $1;
     }

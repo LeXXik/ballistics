@@ -79,28 +79,28 @@ export function SolveCubic(): i32 {
     D = q * q + cb_p;
 
     if (IsZero(D)) {
-	    if (IsZero(q)) {  // one triple solution
+        if (IsZero(q)) {  // one triple solution
             unchecked(output[0] = 0);
             num = 1;
-	    } else {  // one single and one double solution
-            const u: f64 = Math.cbrt(-q);
+        } else {  // one single and one double solution
+            const u = Math.cbrt(-q);
             unchecked(output[0] = 2 * u);
             unchecked(output[1] =    -u);
-	        num = 2;
+            num = 2;
         }
     } else if (D < 0) {  // Casus irreducibilis: three real solutions
-	    const phi = 1.0/3 * Math.acos(-q / Math.sqrt(-cb_p));
+        const phi = 1.0/3 * Math.acos(-q / Math.sqrt(-cb_p));
         const t = 2 * Math.sqrt(-p);
         unchecked(output[0] =  t * Math.cos(phi));
         unchecked(output[1] = -t * Math.cos(phi + Math.PI / 3));
         unchecked(output[2] = -t * Math.cos(phi - Math.PI / 3));
         num = 3;
     } else {  // one real solution
-	    const sqrt_D = Math.sqrt(D);
+        const sqrt_D = Math.sqrt(D);
         const u =  Math.cbrt(sqrt_D - q);
         const v = -Math.cbrt(sqrt_D + q);
         unchecked(output[0] = u + v);
-	    num = 1;
+        num = 1;
     }
 
     /* resubstitute */
@@ -140,7 +140,7 @@ export function SolveQuartic(): i32 {
     D = unchecked(input[4] * t);
 
     // substitute x = y - A/4 to eliminate cubic term:
-	// x^4 + px^2 + qx + r = 0
+    // x^4 + px^2 + qx + r = 0
 
     sq_A = A * A;
     p = -3.0/8   * sq_A + B;
@@ -157,7 +157,7 @@ export function SolveQuartic(): i32 {
 
         num = SolveCubic();
     } else {
-	    // solve the resolvent cubic ...
+        // solve the resolvent cubic ...
 
         unchecked(input[3] = 1.0/2 * r * p - 1.0/8 * q * q);
         unchecked(input[2] = -r);
@@ -166,11 +166,11 @@ export function SolveQuartic(): i32 {
 
         SolveCubic();
 
-	    // ... and take the one real solution ...
+        // ... and take the one real solution ...
 
         z = unchecked(output[0]);
 
-	    // ... to build two quadric equations
+        // ... to build two quadric equations
 
         u = z * z - r;
         v = 2 * z - p;
