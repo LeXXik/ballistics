@@ -1,30 +1,20 @@
 const loader = require("@assemblyscript/loader");
 
-const wasmInstantiate = async (wasmModuleUrl, importObject) => {
-    if (!importObject) {
-        importObject = {
-            env: {
-                abort: () => console.log("Error! Check your attributes.")
-            }
-        };
-    }
-    const instance = await loader.instantiate(fetch(wasmModuleUrl), importObject);
-    return instance;
-};
+const wasmInstantiate = (wasmModuleUrl, importObject = {}) => (
+    loader.instantiate(fetch(wasmModuleUrl), importObject || {})
+);
 
 (async () => {
     const app = pc.Application.getApplication();
     const wasm = app.assets.find('ballistics.wasm');
-    const path = wasm.getFileUrl();
-    const instance = await wasmInstantiate(path);
-    const lib = instance.exports;
+    const { exports: lib } = await wasmInstantiate(wasm.getFileUrl());
     const inputPtr = lib.getInputBufferPtr();
     const outputPtr = lib.getOutputBufferPtr();
     const inputOffset = lib.INPUT_BUFFER_OFFSET.valueOf();
     const outputOffset = lib.OUTPUT_BUFFER_OFFSET.valueOf();
     const input = lib.__getArrayView(inputPtr);
     window.Ballistics = {
-        range: function(speed, initialHeight, gravity) {
+        range(speed, initialHeight, gravity) {
             if (!gravity) gravity = -app.systems.rigidbody.gravity.y;
             if (speed <= 0 || !Number.isFinite(gravity) || !Number.isFinite(initialHeight)) {
                 // #ifdef DEBUG
@@ -40,7 +30,7 @@ const wasmInstantiate = async (wasmModuleUrl, importObject) => {
             const valid = lib.range();
             if (valid > 0) {
                 offset = outputOffset;
-                return lib.__getArray(outputPtr)[offset];
+                return lib.__getFloat64Array(outputPtr)[offset];
             }
 
             return null;
@@ -53,7 +43,7 @@ const wasmInstantiate = async (wasmModuleUrl, importObject) => {
                 // #endif
                 return null;
             }
-            
+
             let offset = inputOffset;
             input[offset++] = from.x;
             input[offset++] = from.y;
@@ -66,18 +56,19 @@ const wasmInstantiate = async (wasmModuleUrl, importObject) => {
             const solutions = lib.solveArcStatic();
             if (solutions > 0) {
                 offset = outputOffset;
-                const lx = lib.__getArray(outputPtr)[offset++];
-                const ly = lib.__getArray(outputPtr)[offset++];
-                const lz = lib.__getArray(outputPtr)[offset++];
-                const hx = lib.__getArray(outputPtr)[offset++];
-                const hy = lib.__getArray(outputPtr)[offset++];
-                const hz = lib.__getArray(outputPtr)[offset++];
+                const output = lib.__getFloat64Array(outputPtr);
+                const lx = output[offset++];
+                const ly = output[offset++];
+                const lz = output[offset++];
+                const hx = output[offset++];
+                const hy = output[offset++];
+                const hz = output[offset++];
                 return {
                     lowAngle: new pc.Vec3(lx, ly, lz),
                     highAngle: new pc.Vec3(hx, hy, hz)
                 };
             }
-            
+
             return null;
         },
         solveMoving: function(from, target, speed, velocity, gravity) {
@@ -88,7 +79,7 @@ const wasmInstantiate = async (wasmModuleUrl, importObject) => {
                 // #endif
                 return null;
             }
-            
+
             let offset = inputOffset;
             input[offset++] = from.x;
             input[offset++] = from.y;
@@ -101,22 +92,23 @@ const wasmInstantiate = async (wasmModuleUrl, importObject) => {
             input[offset++] = velocity.y;
             input[offset++] = velocity.z;
             input[offset++] = gravity;
-            
+
             const s = lib.solveArcMoving();
             if (s > 0) {
                 offset = outputOffset;
-                const s1x = lib.__getArray(outputPtr)[offset++];
-                const s1y = lib.__getArray(outputPtr)[offset++];
-                const s1z = lib.__getArray(outputPtr)[offset++];
-                const s2x = lib.__getArray(outputPtr)[offset++];
-                const s2y = lib.__getArray(outputPtr)[offset++];
-                const s2z = lib.__getArray(outputPtr)[offset++];
-                const s3x = lib.__getArray(outputPtr)[offset++];
-                const s3y = lib.__getArray(outputPtr)[offset++];
-                const s3z = lib.__getArray(outputPtr)[offset++];
-                const s4x = lib.__getArray(outputPtr)[offset++];
-                const s4y = lib.__getArray(outputPtr)[offset++];
-                const s4z = lib.__getArray(outputPtr)[offset++];
+                const output = lib.__getFloat64Array(outputPtr);
+                const s1x = output[offset++];
+                const s1y = output[offset++];
+                const s1z = output[offset++];
+                const s2x = output[offset++];
+                const s2y = output[offset++];
+                const s2z = output[offset++];
+                const s3x = output[offset++];
+                const s3y = output[offset++];
+                const s3z = output[offset++];
+                const s4x = output[offset++];
+                const s4y = output[offset++];
+                const s4z = output[offset++];
                 return {
                     lowAngle: s > 0 ? new pc.Vec3(s1x, s1y, s1z) : null,
                     highAngle: s > 1 ? new pc.Vec3(s2x, s2y, s2z) : null,
@@ -124,7 +116,7 @@ const wasmInstantiate = async (wasmModuleUrl, importObject) => {
                     s4: s > 3 ? new pc.Vec3(s4x, s4y, s4z) : null
                 };
             }
-            
+
             return null;
         },
         solveLateralStatic: function(from, target, speed, height) {
@@ -134,7 +126,7 @@ const wasmInstantiate = async (wasmModuleUrl, importObject) => {
                 // #endif
                 return null;
             }
-            
+
             let offset = inputOffset;
             input[offset++] = from.x;
             input[offset++] = from.y;
@@ -147,10 +139,11 @@ const wasmInstantiate = async (wasmModuleUrl, importObject) => {
             const s = lib.solveLateralStatic();
             if (s > 0) {
                 offset = outputOffset;
-                const x = lib.__getArray(outputPtr)[offset++];
-                const y = lib.__getArray(outputPtr)[offset++];
-                const z = lib.__getArray(outputPtr)[offset++];
-                const g = lib.__getArray(outputPtr)[offset++];
+                const output = lib.__getFloat64Array(outputPtr);
+                const x = output[offset++];
+                const y = output[offset++];
+                const z = output[offset++];
+                const g = output[offset++];
                 const f = app.systems.rigidbody.gravity.y + g;
                 return {
                     velocity: new pc.Vec3(x, y, z),
@@ -167,7 +160,7 @@ const wasmInstantiate = async (wasmModuleUrl, importObject) => {
                 // #endif
                 return null;
             }
-            
+
             let offset = inputOffset;
             input[offset++] = from.x;
             input[offset++] = from.y;
@@ -183,14 +176,15 @@ const wasmInstantiate = async (wasmModuleUrl, importObject) => {
             const s = lib.solveLateralMoving();
             if (s > 0) {
                 offset = outputOffset;
-                const vx = lib.__getArray(outputPtr)[offset++];
-                const vy = lib.__getArray(outputPtr)[offset++];
-                const vz = lib.__getArray(outputPtr)[offset++];
-                const hx = lib.__getArray(outputPtr)[offset++];
-                const hy = lib.__getArray(outputPtr)[offset++];
-                const hz = lib.__getArray(outputPtr)[offset++];
-                const g = lib.__getArray(outputPtr)[offset++];
-                const f = app.systems.rigidbody.gravity.y + g;
+                const output = lib.__getFloat64Array(outputPtr);
+                const vx = output[offset++];
+                const vy = output[offset++];
+                const vz = output[offset++];
+                const hx = output[offset++];
+                const hy = output[offset++];
+                const hz = output[offset++];
+                const g  = output[offset++];
+                const f  = app.systems.rigidbody.gravity.y + g;
                 return {
                     velocity: new pc.Vec3(vx, vy, vz),
                     hit: new pc.Vec3(hx, hy, hz),
@@ -198,14 +192,14 @@ const wasmInstantiate = async (wasmModuleUrl, importObject) => {
                     gravity: g
                 }
             }
-            
+
             return null;
         }
     }
 
 
     // #ifdef DEBUG
-    console.info('Ballistics v1.0');
+    console.info('Ballistics v1.1');
     // #endif
     app.fire('ballistics:ready');
 })();
