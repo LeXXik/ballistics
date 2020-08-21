@@ -2378,15 +2378,15 @@
    i32.const 3
    local.get $7
    call $~lib/typedarray/Float64Array#__uset
-   global.get $index/output
+   global.get $index/input
    i32.const 2
    local.get $3
    call $~lib/typedarray/Float64Array#__uset
-   global.get $index/output
+   global.get $index/input
    i32.const 1
    f64.const 0
    call $~lib/typedarray/Float64Array#__uset
-   global.get $index/output
+   global.get $index/input
    i32.const 0
    f64.const 1
    call $~lib/typedarray/Float64Array#__uset
@@ -4633,7 +4633,7 @@
    i32.lt_s
    i32.const 0
    local.get $16
-   i32.const 6
+   local.get $18
    i32.lt_s
    select
    if

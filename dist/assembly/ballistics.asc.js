@@ -939,6 +939,18 @@ function asmFunc(global, env, buffer) {
   $3 = 1.0 / $0;
   $4 = $lib_typedarray_Float64Array___uget(index_input, 1) * $3;
   $2 = $4 * $4;
+  $5 = $lib_typedarray_Float64Array___uget(index_input, 2) * $3;
+  $6 = -.375 * $2 + $5;
+  $0 = $lib_typedarray_Float64Array___uget(index_input, 3) * $3;
+  $7 = .125 * $2 * $4 - .5 * $4 * $5 + $0;
+  $0 = -.01171875 * $2 * $2 + .0625 * $2 * $5 - .25 * $4 * $0 + $lib_typedarray_Float64Array___uget(index_input, 4) * $3;
+  if (Math_abs($0) < 1.0e-09) {
+   $lib_typedarray_Float64Array___uset(index_input, 3, $7);
+   $lib_typedarray_Float64Array___uset(index_input, 2, $6);
+   $lib_typedarray_Float64Array___uset(index_input, 1, 0.0);
+   $lib_typedarray_Float64Array___uset(index_input, 0, 1.0);
+   $1 = index_SolveCubic();
+  } else {
    $lib_typedarray_Float64Array___uset(index_input, 3, .5 * $0 * $6 - .125 * $7 * $7);
    $lib_typedarray_Float64Array___uset(index_input, 2, -$0);
    $lib_typedarray_Float64Array___uset(index_input, 1, -.5 * $6);
@@ -949,6 +961,7 @@ function asmFunc(global, env, buffer) {
    $0 = $2 * $2 - $0;
    if (Math_abs($0) < 1.0e-09) {
     $0 = 0.0
+   } else {
     if ($0 > 0.0) {
      $0 = Math_sqrt($0)
     } else {
@@ -1622,7 +1635,7 @@ function asmFunc(global, env, buffer) {
   $8 = $17 - $8;
   $lib_typedarray_Float64Array___uset(index_input, 3, $13 * $9 + 2.0 * $6 * $14 + 2.0 * $8 * $15);
   $lib_typedarray_Float64Array___uset(index_input, 4, $7 * $7 + $6 * $6 + $8 * $8);
-  index_SolveQuartic();
+  $18 = index_SolveQuartic();
   $3 = $lib_rt_pure___retain(index_output);
   $2 = HEAP32[($3 + 8 | 0) >> 2];
   $4 = $lib_rt_tlsf___alloc(12, 3);
@@ -1660,9 +1673,15 @@ function asmFunc(global, env, buffer) {
    }
   }
   $lib_rt_pure___release($5);
+  for_loop_0 : while (1) {
+   if (($16 | 0) < ($18 | 0) ? ($11 | 0) < (2 | 0) : 0) {
+    $1 = $lib_typedarray_Float64Array___uget(index_output, $16);
+    if (!($1 <= 0.0)) {
+     $lib_typedarray_Float64Array___uset(index_output, $0, ($6 + $14 * $1) / $1);
      $0 = $0 + 1 | 0;
      $lib_typedarray_Float64Array___uset(index_output, $0, ($7 + $9 * $1 - $10 * $1 * $1) / $1);
      $0 = $0 + 1 | 0;
+     $lib_typedarray_Float64Array___uset(index_output, $0, ($8 + $15 * $1) / $1);
      $11 = $11 + 1 | 0;
      $0 = $0 + 1 | 0;
     }

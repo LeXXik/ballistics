@@ -150,10 +150,10 @@ export function SolveQuartic(): i32 {
     if (IsZero(r)) {
         // no absolute term: y(y^3 + py + q) = 0
 
-        unchecked(output[3] = q);
-        unchecked(output[2] = p);
-        unchecked(output[1] = 0);
-        unchecked(output[0] = 1);
+        unchecked(input[3] = q);
+        unchecked(input[2] = p);
+        unchecked(input[1] = 0);
+        unchecked(input[0] = 1);
 
         num = SolveCubic();
     } else {
@@ -502,7 +502,7 @@ export function solveArcMoving(): i32 {
     let numSolutions = 0;
     let t: f64;
 
-    for (let i = 0; i < OUTPUT_BUFFER_OFFSET && numSolutions < 2; ++i) {
+    for (let i = 0; i < numTimes && numSolutions < 2; ++i) {
         t = unchecked(output[i]);
         if (t <= 0) continue;
 
