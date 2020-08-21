@@ -13,10 +13,11 @@
   ],
   "author": "LeXXik",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@assemblyscript/loader": "^0.14.9"
+  },
   "devDependencies": {
-    "@assemblyscript/loader": "^0.14.8",
-    "assemblyscript": "^0.14.8",
+    "assemblyscript": "^0.14.9",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
     "rollup": "^2.23.1",

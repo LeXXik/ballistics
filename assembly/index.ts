@@ -23,6 +23,42 @@ function IsZero(d: f64): boolean {
     return Math.abs(d) < 1e-9;
 }
 
+@inline
+function sort4(): void {
+    // sort 4 value via sorting networks
+    let t0: f64, t1: f64;
+    t0 = unchecked(output[0]);
+    t1 = unchecked(output[1]);
+    if (t0 > t1) { // swap(0, 1)
+        unchecked(output[0] = t1);
+        unchecked(output[1] = t0);
+    }
+    t0 = unchecked(output[2]);
+    t1 = unchecked(output[3]);
+    if (t0 > t1) { // swap(2, 3)
+        unchecked(output[2] = t1);
+        unchecked(output[3] = t0);
+    }
+    t0 = unchecked(output[0]);
+    t1 = unchecked(output[2]);
+    if (t0 > t1) { // swap(0, 2)
+        unchecked(output[0] = t1);
+        unchecked(output[2] = t0);
+    }
+    t0 = unchecked(output[1]);
+    t1 = unchecked(output[3]);
+    if (t0 > t1) { // swap(1, 3)
+        unchecked(output[1] = t1);
+        unchecked(output[3] = t0);
+    }
+    t0 = unchecked(output[1]);
+    t1 = unchecked(output[2]);
+    if (t0 > t1) { // swap(1, 2)
+        unchecked(output[1] = t1);
+        unchecked(output[2] = t0);
+    }
+}
+
 /* normal form: a^2 + bx + c = 0 */
 // Returns number of solutions.
 export function SolveQuadric(index1: i32 = 0, index2: i32 = 1): i32 {
@@ -79,28 +115,28 @@ export function SolveCubic(): i32 {
     D = q * q + cb_p;
 
     if (IsZero(D)) {
-	    if (IsZero(q)) {  // one triple solution
+        if (IsZero(q)) {  // one triple solution
             unchecked(output[0] = 0);
             num = 1;
-	    } else {  // one single and one double solution
-            const u: f64 = Math.cbrt(-q);
+        } else {  // one single and one double solution
+            const u = Math.cbrt(-q);
             unchecked(output[0] = 2 * u);
             unchecked(output[1] =    -u);
-	        num = 2;
+            num = 2;
         }
     } else if (D < 0) {  // Casus irreducibilis: three real solutions
-	    const phi = 1.0/3 * Math.acos(-q / Math.sqrt(-cb_p));
+        const phi = 1.0/3 * Math.acos(-q / Math.sqrt(-cb_p));
         const t = 2 * Math.sqrt(-p);
         unchecked(output[0] =  t * Math.cos(phi));
         unchecked(output[1] = -t * Math.cos(phi + Math.PI / 3));
         unchecked(output[2] = -t * Math.cos(phi - Math.PI / 3));
         num = 3;
     } else {  // one real solution
-	    const sqrt_D = Math.sqrt(D);
+        const sqrt_D = Math.sqrt(D);
         const u =  Math.cbrt(sqrt_D - q);
         const v = -Math.cbrt(sqrt_D + q);
         unchecked(output[0] = u + v);
-	    num = 1;
+        num = 1;
     }
 
     /* resubstitute */
@@ -140,7 +176,7 @@ export function SolveQuartic(): i32 {
     D = unchecked(input[4] * t);
 
     // substitute x = y - A/4 to eliminate cubic term:
-	// x^4 + px^2 + qx + r = 0
+    // x^4 + px^2 + qx + r = 0
 
     sq_A = A * A;
     p = -3.0/8   * sq_A + B;
@@ -157,7 +193,7 @@ export function SolveQuartic(): i32 {
 
         num = SolveCubic();
     } else {
-	    // solve the resolvent cubic ...
+        // solve the resolvent cubic ...
 
         unchecked(input[3] = 1.0/2 * r * p - 1.0/8 * q * q);
         unchecked(input[2] = -r);
@@ -166,11 +202,11 @@ export function SolveQuartic(): i32 {
 
         SolveCubic();
 
-	    // ... and take the one real solution ...
+        // ... and take the one real solution ...
 
         z = unchecked(output[0]);
 
-	    // ... to build two quadric equations
+        // ... to build two quadric equations
 
         u = z * z - r;
         v = 2 * z - p;
@@ -254,8 +290,9 @@ export function range(): i32 {
     //   (3) via quadratic: t = (speed*sin O)/gravity + sqrt(speed*speed*sin O + 2*gravity*initialHeight)/gravity    [ignore smaller root]
     //   (4) solution: range = x = (speed*cos O)/gravity * sqrt(speed*speed*sin O + 2*gravity*initialHeight)    [plug t back into x=speed*time*cos O]
     const angle = 45 * (Math.PI * 2) / 360; // no air resistence, so 45 degrees provides maximum range
-    const cos = Math.cos(angle);
-    const sin = Math.sin(angle);
+    NativeMath.sincos(angle);
+    const sin = NativeMath.sincos_sin;
+    const cos = NativeMath.sincos_cos;
 
     unchecked(output[outOffset] = (s*cos/g) * (s*sin + Math.sqrt(s*s*sin*sin + 2*g*h)));
 
@@ -362,8 +399,9 @@ export function solveArcStatic(): i32 {
 
     // solution 1
     // groundDir*Mathf.Cos(lowAng)*proj_speed + Vector3.up*Mathf.Sin(lowAng)*proj_speed;
-    let clo = Math.cos(lowAng) * s;
-    let slo = Math.sin(lowAng) * s;
+    NativeMath.sincos(lowAng);
+    let clo = NativeMath.sincos_cos * s;
+    let slo = NativeMath.sincos_sin * s;
     unchecked(output[outOffset++] = dx * clo);
     unchecked(output[outOffset++] = dy * clo + slo);
     unchecked(output[outOffset++] = dz * clo);
@@ -371,8 +409,9 @@ export function solveArcStatic(): i32 {
     // solution 2
     // s1 = groundDir*Mathf.Cos(highAng)*proj_speed + Vector3.up*Mathf.Sin(highAng)*proj_speed;
     if (numSolutions > 1) {
-        let chi = Math.cos(highAng) * s;
-        let shi = Math.sin(highAng) * s;
+        NativeMath.sincos(highAng);
+        let chi = NativeMath.sincos_cos * s;
+        let shi = NativeMath.sincos_sin * s;
         unchecked(output[outOffset++] = dx * chi);
         unchecked(output[outOffset++] = dy * chi + shi);
         unchecked(output[outOffset++] = dz * chi);
@@ -494,8 +533,7 @@ export function solveArcMoving(): i32 {
     const numTimes = SolveQuartic();
 
     // Sort so faster collision is found first
-    const sub = output.subarray(0, 4);
-    sub.sort();
+    sort4();
 
     // Plug quartic solutions into base equations
     // There should never be more than 2 positive, real roots.
@@ -514,8 +552,18 @@ export function solveArcMoving(): i32 {
     }
 
     // Write out solutions
-    if (numSolutions > 0) output.copyWithin(outOffset + 6, outOffset + 0, outOffset + 3);
-    if (numSolutions > 1) output.copyWithin(outOffset + 9, outOffset + 3, outOffset + 6);
+    if (numSolutions > 0) {
+        // output.copyWithin(outOffset + 6, outOffset + 0, outOffset + 3);
+        unchecked(output[outOffset + 6] = output[outOffset + 0]);
+        unchecked(output[outOffset + 7] = output[outOffset + 1]);
+        unchecked(output[outOffset + 8] = output[outOffset + 2]);
+    }
+    if (numSolutions > 1) {
+        // output.copyWithin(outOffset + 9, outOffset + 3, outOffset + 6);
+        unchecked(output[outOffset +  9] = output[outOffset + 3]);
+        unchecked(output[outOffset + 10] = output[outOffset + 4]);
+        unchecked(output[outOffset + 11] = output[outOffset + 5]);
+    }
 
     // clean up
     input.fill(0);
@@ -592,7 +640,7 @@ export function solveLateralStatic(): i32 {
     // normalize diff
     const ls = dx * dx + dz * dz;
     if (ls > 0) {
-        const il = 1 / Math.sqrt(ls);
+        const il = 1.0 / Math.sqrt(ls);
         dx *= il;
         dz *= il;
     }
@@ -612,11 +660,11 @@ export function solveLateralStatic(): i32 {
 
     // fire_velocity
     unchecked(output[outOffset++] = dx);
-    unchecked(output[outOffset++] = -(3*py - 4*h + ty) / t);
+    unchecked(output[outOffset++] = (-3 * py + 4 * h - ty) / t);
     unchecked(output[outOffset++] = dz);
 
     // gravity
-    unchecked(output[outOffset++] = -4*(py - 2*h + ty) / (t*t));
+    unchecked(output[outOffset++] = -4 * (py - 2 * h + ty) / (t * t));
 
     // clean up
     input.fill(0);
@@ -710,17 +758,20 @@ export function solveLateralMoving(): i32 {
 
     const n = SolveQuadric();
 
+    const o0 = unchecked(output[0]);
+    const o1 = unchecked(output[1]);
+
     // pick smallest, positive time
-    const valid0 = n > 0 && unchecked(output[0]) > 0;
-    const valid1 = n > 1 && unchecked(output[1]) > 0;
+    const valid0 = n > 0 && o0 > 0;
+    const valid1 = n > 1 && o1 > 0;
 
     let t: f64;
     if (!valid0 && !valid1)
         return 0;
     else if (valid0 && valid1)
-        t = Math.min(unchecked(output[0]), unchecked(output[1]));
+        t = Math.min(o0, o1);
     else
-        t = valid0 ? unchecked(output[0]) : unchecked(output[1]);
+        t = valid0 ? o0 : o1;
 
     // Calculate impact point
     const ipx = tx + (tvx * t);
@@ -753,7 +804,7 @@ export function solveLateralMoving(): i32 {
 
     // fire_velocity
     unchecked(output[outOffset++] = dirx);
-    unchecked(output[outOffset++] = -(3 * py - 4 * b + ipy) / t);
+    unchecked(output[outOffset++] = (-3 * py + 4 * b - ipy) / t);
     unchecked(output[outOffset++] = dirz);
 
     // impact_point
