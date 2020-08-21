@@ -517,8 +517,18 @@ export function solveArcMoving(): i32 {
     }
 
     // Write out solutions
-    if (numSolutions > 0) output.copyWithin(outOffset + 6, outOffset + 0, outOffset + 3);
-    if (numSolutions > 1) output.copyWithin(outOffset + 9, outOffset + 3, outOffset + 6);
+    if (numSolutions > 0) {
+        // output.copyWithin(outOffset + 6, outOffset + 0, outOffset + 3);
+        unchecked(output[outOffset + 6] = output[outOffset + 0]);
+        unchecked(output[outOffset + 7] = output[outOffset + 1]);
+        unchecked(output[outOffset + 8] = output[outOffset + 2]);
+    }
+    if (numSolutions > 1) {
+        // output.copyWithin(outOffset + 9, outOffset + 3, outOffset + 6);
+        unchecked(output[outOffset +  9] = output[outOffset + 3]);
+        unchecked(output[outOffset + 10] = output[outOffset + 4]);
+        unchecked(output[outOffset + 11] = output[outOffset + 5]);
+    }
 
     // clean up
     input.fill(0);
@@ -713,17 +723,20 @@ export function solveLateralMoving(): i32 {
 
     const n = SolveQuadric();
 
+    const o0 = unchecked(output[0]);
+    const o1 = unchecked(output[1]);
+
     // pick smallest, positive time
-    const valid0 = n > 0 && unchecked(output[0]) > 0;
-    const valid1 = n > 1 && unchecked(output[1]) > 0;
+    const valid0 = n > 0 && o0 > 0;
+    const valid1 = n > 1 && o1 > 0;
 
     let t: f64;
     if (!valid0 && !valid1)
         return 0;
     else if (valid0 && valid1)
-        t = Math.min(unchecked(output[0]), unchecked(output[1]));
+        t = Math.min(o0, o1);
     else
-        t = valid0 ? unchecked(output[0]) : unchecked(output[1]);
+        t = valid0 ? o0 : o1;
 
     // Calculate impact point
     const ipx = tx + (tvx * t);
