@@ -4906,16 +4906,15 @@
   call $~lib/typedarray/Float64Array#__uset
   global.get $index/output
   i32.const 7
-  f64.const 3
+  f64.const -3
   local.get $5
   f64.mul
   f64.const 4
   local.get $7
   f64.mul
-  f64.sub
-  local.get $6
   f64.add
-  f64.neg
+  local.get $6
+  f64.sub
   local.get $2
   f64.div
   call $~lib/typedarray/Float64Array#__uset
@@ -5163,7 +5162,7 @@
   call $~lib/typedarray/Float64Array#__uset
   global.get $index/output
   i32.const 7
-  f64.const 3
+  f64.const -3
   local.get $11
   f64.mul
   f64.const 4
@@ -5174,10 +5173,9 @@
   f64.add
   local.tee $5
   f64.mul
-  f64.sub
+  f64.add
   local.get $10
   f64.add
-  f64.neg
   local.get $3
   f64.div
   call $~lib/typedarray/Float64Array#__uset

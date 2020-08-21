@@ -1746,7 +1746,7 @@ function asmFunc(global, env, buffer) {
    $1 = $1 * $3;
   }
   $lib_typedarray_Float64Array___uset(index_output, 6, $0 * $4);
-  $lib_typedarray_Float64Array___uset(index_output, 7, -(3.0 * $5 - 4.0 * $7 + $6) / $2);
+  $lib_typedarray_Float64Array___uset(index_output, 7, (-3.0 * $5 + 4.0 * $7 - $6) / $2);
   $lib_typedarray_Float64Array___uset(index_output, 8, $1 * $4);
   $lib_typedarray_Float64Array___uset(index_output, 9, -4.0 * ($5 - 2.0 * $7 + $6) / ($2 * $2));
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_input));
@@ -1807,7 +1807,7 @@ function asmFunc(global, env, buffer) {
   }
   $lib_typedarray_Float64Array___uset(index_output, 6, $2 * $8);
   $1 = Math_max($12, $11) + $15;
-  $lib_typedarray_Float64Array___uset(index_output, 7, -(3.0 * $12 - 4.0 * $1 + $11) / $0);
+  $lib_typedarray_Float64Array___uset(index_output, 7, (-3.0 * $12 + 4.0 * $1 + $11) / $0);
   $lib_typedarray_Float64Array___uset(index_output, 8, $3 * $8);
   $lib_typedarray_Float64Array___uset(index_output, 9, $5);
   $lib_typedarray_Float64Array___uset(index_output, 10, $11);

@@ -595,7 +595,7 @@ export function solveLateralStatic(): i32 {
     // normalize diff
     const ls = dx * dx + dz * dz;
     if (ls > 0) {
-        const il = 1 / Math.sqrt(ls);
+        const il = 1.0 / Math.sqrt(ls);
         dx *= il;
         dz *= il;
     }
@@ -615,11 +615,11 @@ export function solveLateralStatic(): i32 {
 
     // fire_velocity
     unchecked(output[outOffset++] = dx);
-    unchecked(output[outOffset++] = -(3*py - 4*h + ty) / t);
+    unchecked(output[outOffset++] = (-3 * py + 4 * h - ty) / t);
     unchecked(output[outOffset++] = dz);
 
     // gravity
-    unchecked(output[outOffset++] = -4*(py - 2*h + ty) / (t*t));
+    unchecked(output[outOffset++] = -4 * (py - 2 * h + ty) / (t * t));
 
     // clean up
     input.fill(0);
@@ -756,7 +756,7 @@ export function solveLateralMoving(): i32 {
 
     // fire_velocity
     unchecked(output[outOffset++] = dirx);
-    unchecked(output[outOffset++] = -(3 * py - 4 * b + ipy) / t);
+    unchecked(output[outOffset++] = (-3 * py + 4 * b + ipy) / t);
     unchecked(output[outOffset++] = dirz);
 
     // impact_point
