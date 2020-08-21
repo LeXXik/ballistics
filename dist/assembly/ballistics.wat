@@ -1,8 +1,8 @@
 (module
  (type $none_=>_i32 (func (result i32)))
  (type $i32_i32_=>_none (func (param i32 i32)))
- (type $f64_=>_f64 (func (param f64) (result f64)))
  (type $f64_f64_=>_i32 (func (param f64 f64) (result i32)))
+ (type $f64_=>_f64 (func (param f64) (result f64)))
  (type $i32_=>_none (func (param i32)))
  (type $i32_i32_=>_i32 (func (param i32 i32) (result i32)))
  (type $none_=>_none (func))
@@ -10,6 +10,7 @@
  (type $i32_=>_i32 (func (param i32) (result i32)))
  (type $i32_i32_i32_i32_=>_none (func (param i32 i32 i32 i32)))
  (type $i32_i32_f64_=>_none (func (param i32 i32 f64)))
+ (type $f64_=>_none (func (param f64)))
  (type $i32_i32_i32_=>_i32 (func (param i32 i32 i32) (result i32)))
  (type $i32_i32_i32_i32_=>_i32 (func (param i32 i32 i32 i32) (result i32)))
  (type $i64_=>_i32 (func (param i64) (result i32)))
@@ -36,6 +37,8 @@
  (global $~lib/math/rempio2_y0 (mut f64) (f64.const 0))
  (global $~lib/math/rempio2_y1 (mut f64) (f64.const 0))
  (global $~lib/math/res128_hi (mut i64) (i64.const 0))
+ (global $~lib/math/NativeMath.sincos_sin (mut f64) (f64.const 0))
+ (global $~lib/math/NativeMath.sincos_cos (mut f64) (f64.const 0))
  (global $~argumentsLength (mut i32) (i32.const 0))
  (global $~lib/rt/__rtti_base i32 (i32.const 1600))
  (export "memory" (memory $0))
@@ -2659,43 +2662,53 @@
   end
   local.get $2
  )
- (func $~lib/math/NativeMath.sin (param $0 f64) (result f64)
+ (func $~lib/math/NativeMath.sincos (param $0 f64)
   (local $1 f64)
-  (local $2 i32)
-  (local $3 f64)
+  (local $2 f64)
+  (local $3 i32)
   (local $4 f64)
-  (local $5 i64)
-  (local $6 i32)
-  (local $7 f64)
+  (local $5 f64)
+  (local $6 i64)
+  (local $7 i32)
+  (local $8 f64)
+  (local $9 f64)
+  (local $10 f64)
   local.get $0
   i64.reinterpret_f64
-  local.tee $5
+  local.tee $6
   i64.const 32
   i64.shr_u
   i32.wrap_i64
-  local.tee $2
+  local.tee $3
   i32.const 31
   i32.shr_u
-  local.set $6
-  local.get $2
+  local.set $7
+  local.get $3
   i32.const 2147483647
   i32.and
-  local.tee $2
+  local.tee $3
   i32.const 1072243195
   i32.le_u
   if
-   local.get $2
-   i32.const 1045430272
+   local.get $3
+   i32.const 1044816030
    i32.lt_u
    if
     local.get $0
+    global.set $~lib/math/NativeMath.sincos_sin
+    f64.const 1
+    global.set $~lib/math/NativeMath.sincos_cos
     return
    end
    local.get $0
    local.get $0
-   local.get $0
    f64.mul
    local.tee $1
+   local.get $1
+   f64.mul
+   local.set $2
+   local.get $0
+   local.get $1
    local.get $0
    f64.mul
    f64.const -0.16666666666666632
@@ -2710,9 +2723,7 @@
    f64.mul
    f64.add
    local.get $1
-   local.get $1
-   local.get $1
-   f64.mul
+   local.get $2
    f64.mul
    f64.const -2.5050760253406863e-08
    local.get $1
@@ -2725,32 +2736,83 @@
    f64.add
    f64.mul
    f64.add
+   global.set $~lib/math/NativeMath.sincos_sin
+   f64.const 1
+   f64.const 0.5
+   local.get $1
+   f64.mul
+   local.tee $4
+   f64.sub
+   local.tee $5
+   f64.const 1
+   local.get $5
+   f64.sub
+   local.get $4
+   f64.sub
+   local.get $1
+   local.get $1
+   f64.const 0.0416666666666666
+   local.get $1
+   f64.const -0.001388888888887411
+   local.get $1
+   f64.const 2.480158728947673e-05
+   f64.mul
+   f64.add
+   f64.mul
+   f64.add
+   f64.mul
+   local.get $2
+   local.get $2
+   f64.mul
+   f64.const -2.7557314351390663e-07
+   local.get $1
+   f64.const 2.087572321298175e-09
+   local.get $1
+   f64.const -1.1359647557788195e-11
+   f64.mul
+   f64.add
+   f64.mul
+   f64.add
+   f64.mul
+   f64.add
+   f64.mul
+   local.get $0
+   f64.const 0
+   f64.mul
+   f64.sub
+   f64.add
+   f64.add
+   global.set $~lib/math/NativeMath.sincos_cos
    return
   end
-  local.get $2
-  i32.const 2146435072
+  local.get $3
+  i32.const 2139095040
   i32.ge_u
   if
    local.get $0
    local.get $0
    f64.sub
+   local.tee $0
+   global.set $~lib/math/NativeMath.sincos_sin
+   local.get $0
+   global.set $~lib/math/NativeMath.sincos_cos
    return
   end
   block $~lib/math/rempio2|inlined.1 (result i32)
-   local.get $5
+   local.get $6
    i64.const 32
    i64.shr_u
    i32.wrap_i64
    i32.const 2147483647
    i32.and
-   local.tee $2
+   local.tee $3
    i32.const 1094263291
    i32.lt_u
    if
-    local.get $2
+    local.get $3
     i32.const 20
     i32.shr_u
-    local.tee $2
+    local.tee $3
     local.get $0
     local.get $0
     f64.const 0.6366197723675814
@@ -2764,7 +2826,7 @@
     local.get $4
     f64.const 6.077100506506192e-11
     f64.mul
-    local.tee $3
+    local.tee $2
     f64.sub
     local.tee $1
     i64.reinterpret_f64
@@ -2794,10 +2856,10 @@
      local.get $1
      f64.sub
      f64.sub
-     local.set $3
-     local.get $2
-     local.get $0
+     local.set $2
      local.get $3
+     local.get $0
+     local.get $2
      f64.sub
      local.tee $1
      i64.reinterpret_f64
@@ -2827,9 +2889,9 @@
       local.get $1
       f64.sub
       f64.sub
-      local.set $3
+      local.set $2
       local.get $0
-      local.get $3
+      local.get $2
       f64.sub
      else
       local.get $1
@@ -2841,7 +2903,7 @@
     local.get $0
     local.get $1
     f64.sub
-    local.get $3
+    local.get $2
     f64.sub
     global.set $~lib/math/rempio2_y1
     local.get $4
@@ -2849,134 +2911,142 @@
     br $~lib/math/rempio2|inlined.1
    end
    i32.const 0
-   local.get $5
-   call $~lib/math/pio2_large_quot
-   local.tee $2
-   i32.sub
-   local.get $2
    local.get $6
+   call $~lib/math/pio2_large_quot
+   local.tee $3
+   i32.sub
+   local.get $3
+   local.get $7
    select
   end
-  local.set $2
+  local.set $3
   global.get $~lib/math/rempio2_y0
-  local.set $1
-  global.get $~lib/math/rempio2_y1
-  local.set $4
+  local.tee $2
   local.get $2
+  f64.mul
+  local.tee $1
+  local.get $2
+  f64.mul
+  local.set $0
+  local.get $2
+  local.get $1
+  f64.const 0.5
+  global.get $~lib/math/rempio2_y1
+  local.tee $4
+  f64.mul
+  local.get $0
+  f64.const 0.00833333333332249
+  local.get $1
+  f64.const -1.984126982985795e-04
+  local.get $1
+  f64.const 2.7557313707070068e-06
+  f64.mul
+  f64.add
+  f64.mul
+  f64.add
+  local.get $1
+  local.get $1
+  local.get $1
+  f64.mul
+  local.tee $5
+  f64.mul
+  f64.const -2.5050760253406863e-08
+  local.get $1
+  f64.const 1.58969099521155e-10
+  f64.mul
+  f64.add
+  f64.mul
+  f64.add
+  f64.mul
+  f64.sub
+  f64.mul
+  local.get $4
+  f64.sub
+  local.get $0
+  f64.const -0.16666666666666632
+  f64.mul
+  f64.sub
+  f64.sub
+  local.tee $8
+  local.set $0
+  f64.const 1
+  f64.const 0.5
+  local.get $1
+  f64.mul
+  local.tee $9
+  f64.sub
+  local.tee $10
+  f64.const 1
+  local.get $10
+  f64.sub
+  local.get $9
+  f64.sub
+  local.get $1
+  local.get $1
+  f64.const 0.0416666666666666
+  local.get $1
+  f64.const -0.001388888888887411
+  local.get $1
+  f64.const 2.480158728947673e-05
+  f64.mul
+  f64.add
+  f64.mul
+  f64.add
+  f64.mul
+  local.get $5
+  local.get $5
+  f64.mul
+  f64.const -2.7557314351390663e-07
+  local.get $1
+  f64.const 2.087572321298175e-09
+  local.get $1
+  f64.const -1.1359647557788195e-11
+  f64.mul
+  f64.add
+  f64.mul
+  f64.add
+  f64.mul
+  f64.add
+  f64.mul
+  local.get $2
+  local.get $4
+  f64.mul
+  f64.sub
+  f64.add
+  f64.add
+  local.tee $1
+  local.set $2
+  local.get $3
   i32.const 1
   i32.and
-  if (result f64)
-   f64.const 1
-   f64.const 0.5
+  if
+   local.get $8
+   f64.neg
+   local.set $2
    local.get $1
-   local.get $1
-   f64.mul
-   local.tee $0
-   f64.mul
-   local.tee $3
-   f64.sub
-   local.tee $7
-   f64.const 1
-   local.get $7
-   f64.sub
-   local.get $3
-   f64.sub
-   local.get $0
-   local.get $0
-   f64.const 0.0416666666666666
-   local.get $0
-   f64.const -0.001388888888887411
-   local.get $0
-   f64.const 2.480158728947673e-05
-   f64.mul
-   f64.add
-   f64.mul
-   f64.add
-   f64.mul
-   local.get $0
-   local.get $0
-   f64.mul
-   local.tee $3
-   local.get $3
-   f64.mul
-   f64.const -2.7557314351390663e-07
-   local.get $0
-   f64.const 2.087572321298175e-09
-   local.get $0
-   f64.const -1.1359647557788195e-11
-   f64.mul
-   f64.add
-   f64.mul
-   f64.add
-   f64.mul
-   f64.add
-   f64.mul
-   local.get $1
-   local.get $4
-   f64.mul
-   f64.sub
-   f64.add
-   f64.add
-  else
-   local.get $1
-   local.get $1
-   f64.mul
-   local.tee $0
-   local.get $1
-   f64.mul
-   local.set $3
-   local.get $1
-   local.get $0
-   f64.const 0.5
-   local.get $4
-   f64.mul
-   local.get $3
-   f64.const 0.00833333333332249
-   local.get $0
-   f64.const -1.984126982985795e-04
-   local.get $0
-   f64.const 2.7557313707070068e-06
-   f64.mul
-   f64.add
-   f64.mul
-   f64.add
-   local.get $0
-   local.get $0
-   local.get $0
-   f64.mul
-   f64.mul
-   f64.const -2.5050760253406863e-08
-   local.get $0
-   f64.const 1.58969099521155e-10
-   f64.mul
-   f64.add
-   f64.mul
-   f64.add
-   f64.mul
-   f64.sub
-   f64.mul
-   local.get $4
-   f64.sub
-   local.get $3
-   f64.const -0.16666666666666632
-   f64.mul
-   f64.sub
-   f64.sub
+   local.set $0
   end
-  local.tee $0
-  f64.neg
-  local.get $0
-  local.get $2
+  local.get $3
   i32.const 2
   i32.and
-  select
+  if (result f64)
+   local.get $2
+   f64.neg
+   local.set $2
+   local.get $0
+   f64.neg
+  else
+   local.get $0
+  end
+  global.set $~lib/math/NativeMath.sincos_sin
+  local.get $2
+  global.set $~lib/math/NativeMath.sincos_cos
  )
  (func $index/range (result i32)
   (local $0 f64)
   (local $1 f64)
   (local $2 f64)
   (local $3 f64)
-  (local $4 f64)
   global.get $index/output
   call $~lib/typedarray/Float64Array#fill
   call $~lib/rt/pure/__release
@@ -2987,36 +3057,33 @@
   global.get $index/input
   i32.const 6
   call $~lib/typedarray/Float64Array#__uget
-  local.set $2
+  local.set $1
   global.get $index/input
   i32.const 7
   call $~lib/typedarray/Float64Array#__uget
   local.set $3
   f64.const 0.7853981633974483
-  call $~lib/math/NativeMath.cos
-  local.set $4
-  f64.const 0.7853981633974483
-  call $~lib/math/NativeMath.sin
-  local.set $1
+  call $~lib/math/NativeMath.sincos
   global.get $index/output
   i32.const 6
   local.get $0
-  local.get $4
+  global.get $~lib/math/NativeMath.sincos_cos
   f64.mul
-  local.get $2
+  local.get $1
   f64.div
   local.get $0
-  local.get $1
+  global.get $~lib/math/NativeMath.sincos_sin
+  local.tee $2
   f64.mul
   local.get $0
   local.get $0
   f64.mul
-  local.get $1
+  local.get $2
   f64.mul
-  local.get $1
+  local.get $2
   f64.mul
   f64.const 2
-  local.get $2
+  local.get $1
   f64.mul
   local.get $3
   f64.mul
@@ -3483,7 +3550,7 @@
   global.get $index/input
   i32.const 6
   call $~lib/typedarray/Float64Array#__uget
-  local.set $2
+  local.set $3
   global.get $index/input
   i32.const 7
   call $~lib/typedarray/Float64Array#__uget
@@ -3491,17 +3558,17 @@
   global.get $index/input
   i32.const 8
   call $~lib/typedarray/Float64Array#__uget
-  local.set $3
+  local.set $5
   global.get $index/input
   i32.const 9
   call $~lib/typedarray/Float64Array#__uget
   local.get $0
   f64.sub
-  local.set $4
+  local.set $2
   global.get $index/input
   i32.const 10
   call $~lib/typedarray/Float64Array#__uget
-  local.get $2
+  local.get $3
   f64.sub
   local.set $0
   global.get $index/input
@@ -3509,33 +3576,33 @@
   call $~lib/typedarray/Float64Array#__uget
   local.get $1
   f64.sub
-  local.set $2
+  local.set $3
   global.get $index/input
   i32.const 12
   call $~lib/typedarray/Float64Array#__uget
-  local.tee $5
-  local.get $4
-  local.get $4
+  local.tee $4
+  local.get $2
+  local.get $2
   f64.mul
   local.get $0
   local.get $0
   f64.mul
   f64.add
-  local.get $2
-  local.get $2
+  local.get $3
+  local.get $3
   f64.mul
   f64.add
   f64.sqrt
   local.tee $7
   f64.mul
   local.set $6
-  local.get $3
-  local.get $3
+  local.get $5
+  local.get $5
   f64.mul
   local.tee $1
   local.get $1
   f64.mul
-  local.get $5
+  local.get $4
   local.get $6
   local.get $7
   f64.mul
@@ -3547,7 +3614,7 @@
   f64.add
   f64.mul
   f64.sub
-  local.tee $5
+  local.tee $4
   f64.const 0
   f64.lt
   if
@@ -3557,15 +3624,15 @@
   i32.const 2
   i32.const 1
   local.get $1
-  local.get $5
+  local.get $4
   f64.sqrt
-  local.tee $7
+  local.tee $4
   f64.sub
   local.get $6
   call $~lib/math/NativeMath.atan2
-  local.tee $5
+  local.tee $7
   local.get $1
-  local.get $7
+  local.get $4
   f64.add
   local.get $6
   call $~lib/math/NativeMath.atan2
@@ -3573,52 +3640,51 @@
   f64.ne
   select
   local.set $8
-  local.get $4
-  local.get $4
+  local.get $2
+  local.get $2
   f64.mul
   local.get $0
   local.get $0
   f64.mul
   f64.add
-  local.get $2
-  local.get $2
+  local.get $3
+  local.get $3
   f64.mul
   f64.add
   local.tee $1
   f64.const 0
   f64.gt
   if
-   local.get $4
+   local.get $2
    f64.const 1
    local.get $1
    f64.sqrt
    f64.div
    local.tee $1
    f64.mul
-   local.set $4
-   local.get $2
+   local.set $2
+   local.get $3
    local.get $1
    f64.mul
-   local.set $2
+   local.set $3
    local.get $0
    local.get $1
    f64.mul
    local.set $0
   end
+  local.get $7
+  call $~lib/math/NativeMath.sincos
+  global.get $~lib/math/NativeMath.sincos_sin
   local.get $5
-  call $~lib/math/NativeMath.cos
-  local.get $3
   f64.mul
-  local.set $1
-  local.get $5
-  call $~lib/math/NativeMath.sin
-  local.get $3
-  f64.mul
-  local.set $5
+  local.set $4
   global.get $index/output
   i32.const 6
-  local.get $4
-  local.get $1
+  local.get $2
+  global.get $~lib/math/NativeMath.sincos_cos
+  local.get $5
+  f64.mul
+  local.tee $1
   f64.mul
   call $~lib/typedarray/Float64Array#__uset
   global.get $index/output
@@ -3626,12 +3692,12 @@
   local.get $0
   local.get $1
   f64.mul
-  local.get $5
+  local.get $4
   f64.add
   call $~lib/typedarray/Float64Array#__uset
   global.get $index/output
   i32.const 8
-  local.get $2
+  local.get $3
   local.get $1
   f64.mul
   call $~lib/typedarray/Float64Array#__uset
@@ -3640,33 +3706,32 @@
   i32.gt_s
   if
    local.get $6
-   call $~lib/math/NativeMath.cos
-   local.get $3
+   call $~lib/math/NativeMath.sincos
+   global.get $~lib/math/NativeMath.sincos_sin
+   local.get $5
    f64.mul
    local.set $1
-   local.get $6
-   call $~lib/math/NativeMath.sin
-   local.get $3
-   f64.mul
-   local.set $3
    global.get $index/output
    i32.const 9
-   local.get $4
-   local.get $1
+   local.get $2
+   global.get $~lib/math/NativeMath.sincos_cos
+   local.get $5
+   f64.mul
+   local.tee $2
    f64.mul
    call $~lib/typedarray/Float64Array#__uset
    global.get $index/output
    i32.const 10
    local.get $0
-   local.get $1
+   local.get $2
    f64.mul
-   local.get $3
+   local.get $1
    f64.add
    call $~lib/typedarray/Float64Array#__uset
    global.get $index/output
    i32.const 11
+   local.get $3
    local.get $2
-   local.get $1
    f64.mul
    call $~lib/typedarray/Float64Array#__uset
   end

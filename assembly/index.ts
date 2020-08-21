@@ -254,8 +254,9 @@ export function range(): i32 {
     //   (3) via quadratic: t = (speed*sin O)/gravity + sqrt(speed*speed*sin O + 2*gravity*initialHeight)/gravity    [ignore smaller root]
     //   (4) solution: range = x = (speed*cos O)/gravity * sqrt(speed*speed*sin O + 2*gravity*initialHeight)    [plug t back into x=speed*time*cos O]
     const angle = 45 * (Math.PI * 2) / 360; // no air resistence, so 45 degrees provides maximum range
-    const cos = Math.cos(angle);
-    const sin = Math.sin(angle);
+    NativeMath.sincos(angle);
+    const sin = NativeMath.sincos_sin;
+    const cos = NativeMath.sincos_cos;
 
     unchecked(output[outOffset] = (s*cos/g) * (s*sin + Math.sqrt(s*s*sin*sin + 2*g*h)));
 
@@ -362,8 +363,9 @@ export function solveArcStatic(): i32 {
 
     // solution 1
     // groundDir*Mathf.Cos(lowAng)*proj_speed + Vector3.up*Mathf.Sin(lowAng)*proj_speed;
-    let clo = Math.cos(lowAng) * s;
-    let slo = Math.sin(lowAng) * s;
+    NativeMath.sincos(lowAng);
+    let clo = NativeMath.sincos_cos * s;
+    let slo = NativeMath.sincos_sin * s;
     unchecked(output[outOffset++] = dx * clo);
     unchecked(output[outOffset++] = dy * clo + slo);
     unchecked(output[outOffset++] = dz * clo);
@@ -371,8 +373,9 @@ export function solveArcStatic(): i32 {
     // solution 2
     // s1 = groundDir*Mathf.Cos(highAng)*proj_speed + Vector3.up*Mathf.Sin(highAng)*proj_speed;
     if (numSolutions > 1) {
-        let chi = Math.cos(highAng) * s;
-        let shi = Math.sin(highAng) * s;
+        NativeMath.sincos(highAng);
+        let chi = NativeMath.sincos_cos * s;
+        let shi = NativeMath.sincos_sin * s;
         unchecked(output[outOffset++] = dx * chi);
         unchecked(output[outOffset++] = dy * chi + shi);
         unchecked(output[outOffset++] = dz * chi);

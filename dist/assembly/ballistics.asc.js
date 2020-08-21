@@ -52,6 +52,8 @@ function asmFunc(global, env, buffer) {
  var $lib_math_rempio2_y0 = 0.0;
  var $lib_math_rempio2_y1 = 0.0;
  var $lib_math_res128_hi = 0;
+ var $lib_math_NativeMath_sincos_sin = 0.0;
+ var $lib_math_NativeMath_sincos_cos = 0.0;
  var $argumentsLength = 0;
  var $lib_rt___rtti_base = 1600;
  var $lib_math_res128_hi$hi = 0;
@@ -1031,90 +1033,108 @@ function asmFunc(global, env, buffer) {
   return $2;
  }
  
- function $lib_math_NativeMath_sin($0) {
-  var $1 = 0.0, $2 = 0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $6 = 0, $7 = 0, $8 = 0, $9 = 0.0;
+ function $lib_math_NativeMath_sincos($0) {
+  var $1 = 0.0, $2 = 0.0, $3 = 0, $4 = 0.0, $5 = 0.0, $6 = 0, $7 = 0.0, $8 = 0.0, $9 = 0.0, $10 = 0, $11 = 0;
   wasm2js_scratch_store_f64(+$0);
-  $2 = wasm2js_scratch_load_i32(1 | 0) | 0;
-  $6 = $2;
-  $7 = wasm2js_scratch_load_i32(0 | 0) | 0;
-  $8 = $2 >>> 31 | 0;
-  $2 = $2 & 2147483647 | 0;
-  if ($2 >>> 0 <= 1072243195 >>> 0) {
-   if ($2 >>> 0 < 1045430272 >>> 0) {
-    return $0
+  $3 = wasm2js_scratch_load_i32(1 | 0) | 0;
+  $6 = $3;
+  $10 = wasm2js_scratch_load_i32(0 | 0) | 0;
+  $11 = $3 >>> 31 | 0;
+  $3 = $3 & 2147483647 | 0;
+  if ($3 >>> 0 <= 1072243195 >>> 0) {
+   if ($3 >>> 0 < 1044816030 >>> 0) {
+    $lib_math_NativeMath_sincos_sin = $0;
+    $lib_math_NativeMath_sincos_cos = 1.0;
+    return;
    }
    $1 = $0 * $0;
-   $4 = -1.984126982985795e-04 + $1 * 2.7557313707070068e-06;
-   return $0 + $1 * $0 * (-.16666666666666632 + $1 * (.00833333333332249 + $1 * $4 + $1 * ($1 * $1) * (-2.5050760253406863e-08 + $1 * 1.58969099521155e-10)));
+   $2 = -1.984126982985795e-04 + $1 * 2.7557313707070068e-06;
+   $5 = .00833333333332249 + $1 * $2;
+   $2 = $1 * $1;
+   $lib_math_NativeMath_sincos_sin = $0 + $1 * $0 * (-.16666666666666632 + $1 * ($5 + $1 * $2 * (-2.5050760253406863e-08 + $1 * 1.58969099521155e-10)));
+   $4 = .5 * $1;
+   $7 = 1.0 - $4;
+   $0 = 1.0 - $7 - $4 + ($1 * ($1 * (.0416666666666666 + $1 * (-.001388888888887411 + $1 * 2.480158728947673e-05)) + $2 * $2 * (-2.7557314351390663e-07 + $1 * (2.087572321298175e-09 + $1 * -1.1359647557788195e-11))) - $0 * 0.0);
+   $lib_math_NativeMath_sincos_cos = $7 + $0;
+   return;
   }
-  if ($2 >>> 0 >= 2146435072 >>> 0) {
-   return $0 - $0
+  if ($3 >>> 0 >= 2139095040 >>> 0) {
+   $0 = $0 - $0;
+   $lib_math_NativeMath_sincos_sin = $0;
+   $lib_math_NativeMath_sincos_cos = $0;
+   return;
   }
-  $2 = $6 & 2147483647 | 0;
+  $3 = $6 & 2147483647 | 0;
   $lib_math_rempio2_inlined_1 : {
-   if ($2 >>> 0 < 1094263291 >>> 0) {
+   if ($3 >>> 0 < 1094263291 >>> 0) {
     $4 = __wasm_nearest_f64($0 * .6366197723675814);
     $0 = $0 - $4 * 1.5707963267341256;
-    $3 = $4 * 6.077100506506192e-11;
-    $1 = $0 - $3;
+    $2 = $4 * 6.077100506506192e-11;
+    $1 = $0 - $2;
     wasm2js_scratch_store_f64(+$1);
     $6 = wasm2js_scratch_load_i32(1 | 0) | 0;
     wasm2js_scratch_load_i32(0 | 0) | 0;
-    $2 = $2 >>> 20 | 0;
-    if (($2 - (($6 >>> 20 | 0) & 2047 | 0) | 0) >>> 0 > 16 >>> 0) {
+    $3 = $3 >>> 20 | 0;
+    if (($3 - (($6 >>> 20 | 0) & 2047 | 0) | 0) >>> 0 > 16 >>> 0) {
      $5 = $0;
      $1 = $4 * 6.077100506303966e-11;
      $0 = $0 - $1;
-     $3 = $4 * 2.0222662487959506e-21 - ($5 - $0 - $1);
-     $1 = $0 - $3;
+     $2 = $4 * 2.0222662487959506e-21 - ($5 - $0 - $1);
+     $1 = $0 - $2;
      wasm2js_scratch_store_f64(+$1);
      $6 = wasm2js_scratch_load_i32(1 | 0) | 0;
      wasm2js_scratch_load_i32(0 | 0) | 0;
-     if (($2 - (($6 >>> 20 | 0) & 2047 | 0) | 0) >>> 0 > 49 >>> 0) {
+     if (($3 - (($6 >>> 20 | 0) & 2047 | 0) | 0) >>> 0 > 49 >>> 0) {
       $5 = $0;
       $1 = $4 * 2.0222662487111665e-21;
       $0 = $0 - $1;
-      $3 = $4 * 8.4784276603689e-32 - ($5 - $0 - $1);
-      $1 = $0 - $3;
+      $2 = $4 * 8.4784276603689e-32 - ($5 - $0 - $1);
+      $1 = $0 - $2;
      }
     }
     $lib_math_rempio2_y0 = $1;
-    $lib_math_rempio2_y1 = $0 - $1 - $3;
-    $2 = ~~$4;
+    $lib_math_rempio2_y1 = $0 - $1 - $2;
+    $3 = ~~$4;
     break $lib_math_rempio2_inlined_1;
    }
-   $2 = $lib_math_pio2_large_quot($7, $6);
-   $2 = $8 ? 0 - $2 | 0 : $2;
+   $3 = $lib_math_pio2_large_quot($10, $6);
+   $3 = $11 ? 0 - $3 | 0 : $3;
   }
-  $1 = $lib_math_rempio2_y0;
+  $2 = $lib_math_rempio2_y0;
+  $1 = $2 * $2;
+  $0 = -1.984126982985795e-04 + $1 * 2.7557313707070068e-06;
   $4 = $lib_math_rempio2_y1;
-  if ($2 & 1 | 0) {
-   $0 = $1 * $1;
-   $3 = .5 * $0;
-   $5 = 1.0 - $3;
-   $9 = 1.0 - $5 - $3;
-   $3 = $0 * $0;
-   $0 = $5 + ($9 + ($0 * ($0 * (.0416666666666666 + $0 * (-.001388888888887411 + $0 * 2.480158728947673e-05)) + $3 * $3 * (-2.7557314351390663e-07 + $0 * (2.087572321298175e-09 + $0 * -1.1359647557788195e-11))) - $1 * $4));
-  } else {
-   $0 = $1 * $1;
-   $3 = -1.984126982985795e-04 + $0 * 2.7557313707070068e-06;
-   $5 = $1;
-   $1 = $0 * $1;
-   $0 = $5 - ($0 * (.5 * $4 - $1 * (.00833333333332249 + $0 * $3 + $0 * ($0 * $0) * (-2.5050760253406863e-08 + $0 * 1.58969099521155e-10))) - $4 - $1 * -.16666666666666632);
+  $5 = $1 * $2;
+  $7 = $1 * $1;
+  $5 = $2 - ($1 * (.5 * $4 - $5 * (.00833333333332249 + $1 * $0 + $1 * $7 * (-2.5050760253406863e-08 + $1 * 1.58969099521155e-10))) - $4 - $5 * -.16666666666666632);
+  $0 = $5;
+  $8 = .5 * $1;
+  $9 = 1.0 - $8;
+  $1 = 1.0 - $9 - $8 + ($1 * ($1 * (.0416666666666666 + $1 * (-.001388888888887411 + $1 * 2.480158728947673e-05)) + $7 * $7 * (-2.7557314351390663e-07 + $1 * (2.087572321298175e-09 + $1 * -1.1359647557788195e-11))) - $2 * $4);
+  $1 = $9 + $1;
+  $2 = $1;
+  if ($3 & 1 | 0) {
+   $2 = -$5;
+   $0 = $1;
   }
-  return $2 & 2 | 0 ? -$0 : $0;
+  if ($3 & 2 | 0) {
+   $2 = -$2;
+   $0 = -$0;
+  }
+  $lib_math_NativeMath_sincos_sin = $0;
+  $lib_math_NativeMath_sincos_cos = $2;
  }
  
  function index_range() {
-  var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0, $5 = 0.0;
+  var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0;
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_output));
   $0 = $lib_typedarray_Float64Array___uget(index_input, 5);
   $3 = $lib_typedarray_Float64Array___uget(index_input, 6);
   $1 = $lib_typedarray_Float64Array___uget(index_input, 7);
-  $5 = $0 * $lib_math_NativeMath_cos(.7853981633974483);
-  $2 = $lib_math_NativeMath_sin(.7853981633974483);
+  $lib_math_NativeMath_sincos(.7853981633974483);
+  $2 = $lib_math_NativeMath_sincos_sin;
   $1 = $0 * $0 * $2 * $2 + 2.0 * $3 * $1;
-  $lib_typedarray_Float64Array___uset(index_output, 6, $5 / $3 * ($0 * $2 + Math_sqrt($1)));
+  $lib_typedarray_Float64Array___uset(index_output, 6, $0 * $lib_math_NativeMath_sincos_cos / $3 * ($0 * $2 + Math_sqrt($1)));
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_input));
   if ($lib_typedarray_Float64Array___uget(index_output, 6) > 0.0) {
    $4 = 1
@@ -1304,51 +1324,51 @@ function asmFunc(global, env, buffer) {
  function index_solveArcStatic() {
   var $0 = 0.0, $1 = 0.0, $2 = 0.0, $3 = 0.0, $4 = 0.0, $5 = 0.0, $6 = 0.0, $7 = 0.0, $8 = 0;
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_output));
-  $4 = $lib_typedarray_Float64Array___uget(index_input, 5);
-  $5 = $lib_typedarray_Float64Array___uget(index_input, 6);
-  $1 = $lib_typedarray_Float64Array___uget(index_input, 7);
+  $3 = $lib_typedarray_Float64Array___uget(index_input, 5);
+  $4 = $lib_typedarray_Float64Array___uget(index_input, 6);
+  $0 = $lib_typedarray_Float64Array___uget(index_input, 7);
   $6 = $lib_typedarray_Float64Array___uget(index_input, 8);
-  $3 = $lib_typedarray_Float64Array___uget(index_input, 9);
-  $0 = $lib_typedarray_Float64Array___uget(index_input, 10);
-  $2 = $lib_typedarray_Float64Array___uget(index_input, 11);
+  $2 = $lib_typedarray_Float64Array___uget(index_input, 9);
+  $5 = $lib_typedarray_Float64Array___uget(index_input, 10);
+  $1 = $lib_typedarray_Float64Array___uget(index_input, 11);
   $7 = $lib_typedarray_Float64Array___uget(index_input, 12);
-  $3 = $3 - $4;
-  $4 = $0 - $5;
-  $5 = $2 - $1;
-  $1 = Math_sqrt($3 * $3 + $4 * $4 + $5 * $5);
-  $0 = $7 * $1;
-  $2 = $0 * $1;
-  $1 = $6 * $6;
-  $2 = $2 + 2.0 * $4 * $1;
-  $2 = $1 * $1 - $7 * $2;
-  if ($2 < 0.0) {
+  $2 = $2 - $3;
+  $3 = $5 - $4;
+  $4 = $1 - $0;
+  $0 = Math_sqrt($2 * $2 + $3 * $3 + $4 * $4);
+  $5 = $7 * $0;
+  $1 = $5 * $0;
+  $0 = $6 * $6;
+  $1 = $1 + 2.0 * $3 * $0;
+  $1 = $0 * $0 - $7 * $1;
+  if ($1 < 0.0) {
    return 0 | 0
   }
-  $7 = Math_sqrt($2);
-  $2 = $lib_math_NativeMath_atan2($1 - $7, $0);
-  $1 = $lib_math_NativeMath_atan2($1 + $7, $0);
-  $8 = $2 != $1 ? 2 : 1;
-  $0 = $3 * $3 + $4 * $4 + $5 * $5;
+  $1 = Math_sqrt($1);
+  $7 = $lib_math_NativeMath_atan2($0 - $1, $5);
+  $5 = $lib_math_NativeMath_atan2($0 + $1, $5);
+  $8 = $7 != $5 ? 2 : 1;
+  $0 = $2 * $2 + $3 * $3 + $4 * $4;
   if ($0 > 0.0) {
    $0 = 1.0 / Math_sqrt($0);
-   $3 = $3 * $0;
-   $5 = $5 * $0;
+   $2 = $2 * $0;
    $4 = $4 * $0;
+   $3 = $3 * $0;
   }
-  $0 = $lib_math_NativeMath_cos($2);
-  $2 = $lib_math_NativeMath_sin($2);
-  $0 = $0 * $6;
-  $lib_typedarray_Float64Array___uset(index_output, 6, $3 * $0);
-  $lib_typedarray_Float64Array___uset(index_output, 7, $4 * $0 + $2 * $6);
-  $lib_typedarray_Float64Array___uset(index_output, 8, $5 * $0);
+  $lib_math_NativeMath_sincos($7);
+  $1 = $lib_math_NativeMath_sincos_sin;
+  $0 = $lib_math_NativeMath_sincos_cos * $6;
+  $lib_typedarray_Float64Array___uset(index_output, 6, $2 * $0);
+  $lib_typedarray_Float64Array___uset(index_output, 7, $3 * $0 + $1 * $6);
+  $lib_typedarray_Float64Array___uset(index_output, 8, $4 * $0);
   if (($8 | 0) > (1 | 0)) {
-   $0 = $lib_math_NativeMath_cos($1);
-   $1 = $lib_math_NativeMath_sin($1);
-   $2 = $3;
-   $3 = $0 * $6;
-   $lib_typedarray_Float64Array___uset(index_output, 9, $2 * $3);
-   $lib_typedarray_Float64Array___uset(index_output, 10, $4 * $3 + $1 * $6);
-   $lib_typedarray_Float64Array___uset(index_output, 11, $5 * $3);
+   $lib_math_NativeMath_sincos($5);
+   $0 = $lib_math_NativeMath_sincos_sin;
+   $1 = $2;
+   $2 = $lib_math_NativeMath_sincos_cos * $6;
+   $lib_typedarray_Float64Array___uset(index_output, 9, $1 * $2);
+   $lib_typedarray_Float64Array___uset(index_output, 10, $3 * $2 + $0 * $6);
+   $lib_typedarray_Float64Array___uset(index_output, 11, $4 * $2);
   }
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_input));
   return $8 | 0;
