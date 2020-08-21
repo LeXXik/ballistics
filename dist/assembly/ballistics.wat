@@ -2253,19 +2253,19 @@
   local.tee $1
   call $index/IsZero
   if (result i32)
-   global.get $index/output
+   global.get $index/input
    i32.const 3
    local.get $6
    call $~lib/typedarray/Float64Array#__set
-   global.get $index/output
+   global.get $index/input
    i32.const 2
    local.get $3
    call $~lib/typedarray/Float64Array#__set
-   global.get $index/output
+   global.get $index/input
    i32.const 1
    f64.const 0
    call $~lib/typedarray/Float64Array#__set
-   global.get $index/output
+   global.get $index/input
    i32.const 0
    f64.const 1
    call $~lib/typedarray/Float64Array#__set
@@ -4157,6 +4157,7 @@
   (local $15 f64)
   (local $16 i32)
   (local $17 f64)
+  (local $18 i32)
   global.get $index/output
   call $~lib/typedarray/Float64Array#fill
   call $~lib/rt/pure/__release
@@ -4289,7 +4290,7 @@
   f64.add
   call $~lib/typedarray/Float64Array#__set
   call $index/SolveQuartic
-  drop
+  local.set $18
   global.get $index/output
   call $~lib/rt/pure/__retain
   local.tee $3
@@ -4320,9 +4321,9 @@
   i32.add
   i32.store offset=4
   local.get $4
-  i32.const 6
+  i32.const 4
   local.get $2
-  i32.const 6
+  i32.const 4
   local.get $2
   i32.lt_s
   select
@@ -4412,7 +4413,7 @@
    local.get $16
    i32.const 255
    i32.and
-   i32.const 6
+   local.get $18
    i32.lt_u
    select
    if

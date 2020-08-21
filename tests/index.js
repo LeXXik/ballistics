@@ -227,7 +227,7 @@ let end = 0;
     input[offset++] = 0.5;
     input[offset++] = 3.4063897132873535;
     // speed
-    input[offset++] = 5;
+    input[offset++] = 20;
     // to
     input[offset++] = 4.158546447753906;
     input[offset++] = 0.5;

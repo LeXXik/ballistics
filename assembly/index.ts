@@ -146,11 +146,11 @@ export function SolveQuartic(): u8 {
 
     if (IsZero(r)) {
         // no absolute term: y(y^3 + py + q) = 0
-        
-        output[3] = q;
-        output[2] = p;
-        output[1] = 0;
-        output[0] = 1;
+
+        input[3] = q;
+        input[2] = p;
+        input[1] = 0;
+        input[0] = 1;
 
         num = SolveCubic();
     } else {
@@ -185,7 +185,6 @@ export function SolveQuartic(): u8 {
             v = Math.sqrt(v);
         else
             return 0;
-        
         input[2] = z - u;
         input[1] = q < 0 ? -v : v;
         input[0] = 1;
@@ -490,7 +489,7 @@ export function solveArcMoving(): u8 {
     const numTimes: u8 = SolveQuartic();
 
     // Sort so faster collision is found first
-    const sub = output.subarray(0, OUTPUT_BUFFER_OFFSET);
+    const sub = output.subarray(0, 4);
     sub.sort();
 
     // Plug quartic solutions into base equations
@@ -498,7 +497,7 @@ export function solveArcMoving(): u8 {
     let numSolutions: u8 = 0;
     let t: f64;
     
-    for (let i: u8 = 0; i < OUTPUT_BUFFER_OFFSET && numSolutions < 2; ++i) {
+    for (let i: u8 = 0; i < numTimes && numSolutions < 2; ++i) {
         t = output[i];
         if (t <= 0) continue;
 

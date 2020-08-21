@@ -889,10 +889,10 @@ function asmFunc(global, env, buffer) {
   $6 = .125 * $2 * $4 - .5 * $4 * $5 + $0;
   $0 = -.01171875 * $2 * $2 + .0625 * $2 * $5 - .25 * $4 * $0 + $lib_typedarray_Float64Array___get(index_input, 4) / $lib_typedarray_Float64Array___get(index_input, 0);
   if (index_IsZero($0)) {
-   $lib_typedarray_Float64Array___set(index_output, 3, $6);
-   $lib_typedarray_Float64Array___set(index_output, 2, $3);
-   $lib_typedarray_Float64Array___set(index_output, 1, 0.0);
-   $lib_typedarray_Float64Array___set(index_output, 0, 1.0);
+   $lib_typedarray_Float64Array___set(index_input, 3, $6);
+   $lib_typedarray_Float64Array___set(index_input, 2, $3);
+   $lib_typedarray_Float64Array___set(index_input, 1, 0.0);
+   $lib_typedarray_Float64Array___set(index_input, 0, 1.0);
    $1 = index_SolveCubic();
   } else {
    $lib_typedarray_Float64Array___set(index_input, 3, .5 * $0 * $3 - .125 * $6 * $6);
@@ -1482,7 +1482,7 @@ function asmFunc(global, env, buffer) {
  }
  
  function index_solveArcMoving() {
-  var $0 = 0, $1 = 0.0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0.0, $7 = 0.0, $8 = 0.0, $9 = 0.0, $10 = 0.0, $11 = 0, $12 = 0.0, $13 = 0.0, $14 = 0.0, $15 = 0.0, $16 = 0, $17 = 0.0, wasm2js_i32$0 = 0, wasm2js_i32$1 = 0;
+  var $0 = 0, $1 = 0.0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0.0, $7 = 0.0, $8 = 0.0, $9 = 0.0, $10 = 0.0, $11 = 0, $12 = 0.0, $13 = 0.0, $14 = 0.0, $15 = 0.0, $16 = 0, $17 = 0.0, $18 = 0, wasm2js_i32$0 = 0, wasm2js_i32$1 = 0;
   $lib_rt_pure___release($lib_typedarray_Float64Array_fill(index_output));
   $0 = 6;
   $6 = $lib_typedarray_Float64Array___get(index_input, 5);
@@ -1505,7 +1505,7 @@ function asmFunc(global, env, buffer) {
   $8 = $17 - $8;
   $lib_typedarray_Float64Array___set(index_input, 3, $13 * $9 + 2.0 * $6 * $14 + 2.0 * $8 * $15);
   $lib_typedarray_Float64Array___set(index_input, 4, $7 * $7 + $6 * $6 + $8 * $8);
-  index_SolveQuartic();
+  $18 = index_SolveQuartic();
   $3 = $lib_rt_pure___retain(index_output);
   $2 = HEAP32[($3 + 8 | 0) >> 2];
   $4 = $lib_rt_tlsf___alloc(12, 3);
@@ -1514,7 +1514,7 @@ function asmFunc(global, env, buffer) {
   $5 = (0 | 0) < ($2 | 0);
   $5 = $5 ? 0 : $2;
   HEAP32[($4 + 4 | 0) >> 2] = HEAP32[($3 + 4 | 0) >> 2] + ($5 << 3 | 0) | 0;
-  $2 = (6 | 0) < ($2 | 0) ? 6 : $2;
+  $2 = (4 | 0) < ($2 | 0) ? 4 : $2;
   HEAP32[($4 + 8 | 0) >> 2] = ((($2 | 0) > ($5 | 0) ? $2 : $5) - $5 | 0) << 3 | 0;
   $2 = $lib_rt_pure___retain($4);
   $lib_rt_pure___release($3);
@@ -1544,7 +1544,7 @@ function asmFunc(global, env, buffer) {
   }
   $lib_rt_pure___release($5);
   for_loop_1 : while (1) {
-   if (($16 & 255 | 0) >>> 0 < 6 >>> 0 ? ($11 & 255 | 0) >>> 0 < 2 >>> 0 : 0) {
+   if (($16 & 255 | 0) >>> 0 < $18 >>> 0 ? ($11 & 255 | 0) >>> 0 < 2 >>> 0 : 0) {
     $1 = $lib_typedarray_Float64Array___get(index_output, $16 & 255 | 0);
     if (!($1 <= 0.0)) {
      $lib_typedarray_Float64Array___set(index_output, $0 & 255 | 0, ($6 + $14 * $1) / $1);
