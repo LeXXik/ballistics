@@ -131,10 +131,10 @@ function SolveQuartic() {
     r = -3.0 / 256 * sq_A * sq_A + 1.0 / 16 * sq_A * B - 1.0 / 4 * A * C + D;
     if (IsZero(r)) {
         // no absolute term: y(y^3 + py + q) = 0
-        output[3] = q;
-        output[2] = p;
-        output[1] = 0;
-        output[0] = 1;
+        input[3] = q;
+        input[2] = p;
+        input[1] = 0;
+        input[0] = 1;
         num = SolveCubic();
     }
     else {
@@ -434,7 +434,7 @@ function solveArcMoving() {
     // There should never be more than 2 positive, real roots.
     var numSolutions = 0;
     var t;
-    for (var i = 0; i < 6 && numSolutions < 2; ++i) {
+    for (var i = 0; i < numTimes && numSolutions < 2; ++i) {
         t = output[i];
         if (t <= 0)
             continue;
